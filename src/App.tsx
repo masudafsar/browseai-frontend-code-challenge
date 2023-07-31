@@ -50,7 +50,7 @@ function App() {
   const octokit = new Octokit({ auth: "your_personal_access_tokens" });
 
   return (
-    <div className="h-screen flex flex-col items-center justify-center">
+    <div className="flex flex-col items-center justify-center">
       {currentPage === "PickerPage" && (
         <input
           className={classNames(
@@ -87,7 +87,7 @@ function App() {
                             : "No repositories found";
                         setResultData((prevResultData) => [
                           ...(prevResultData ?? []),
-                          { ...row, searchResults: result },
+                          { ...row, searchResults: result }
                         ]);
                       });
                   });
@@ -192,4 +192,3 @@ const TableHeaderColumn = ({ value }: TableHeaderColumnPropsType) => {
 };
 
 export default App;
-
