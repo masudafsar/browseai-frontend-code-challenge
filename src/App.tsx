@@ -2,7 +2,7 @@ import classNames from "classnames";
 import { Octokit } from "octokit";
 import React from "react";
 
-type CurrentPageType = "PickerPage" | "reviewPage" | "resultsPage";
+type CurrentPageType = "PickerPage" | "ReviewPage" | "ResultsPage";
 
 interface ReviewTableDataType {
   searchKeywords: string;
@@ -41,9 +41,9 @@ function App() {
     if (currentPage === "PickerPage" && selectedFile && !reviewData) {
       parseCSV(selectedFile);
     } else if (currentPage === "PickerPage" && reviewData) {
-      setCurrentPage("reviewPage");
-    } else if (currentPage === "reviewPage" && resultData) {
-      setCurrentPage("resultsPage");
+      setCurrentPage("ReviewPage");
+    } else if (currentPage === "ReviewPage" && resultData) {
+      setCurrentPage("ResultsPage");
     }
   }, [currentPage, selectedFile, parseCSV, reviewData, resultData]);
 
@@ -67,7 +67,7 @@ function App() {
           accept=".csv"
         />
       )}
-      {currentPage === "reviewPage" && reviewData && (
+      {currentPage === "ReviewPage" && reviewData && (
         <Table
           data={reviewData}
           title="Review"
@@ -97,7 +97,7 @@ function App() {
           }
         />
       )}
-      {currentPage === "resultsPage" && (
+      {currentPage === "ResultsPage" && (
         <Table data={resultData} title="Results" />
       )}
     </div>
