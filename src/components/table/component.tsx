@@ -1,5 +1,6 @@
 import {ReactNode} from "react";
 import {TableDataColumn, TableHeaderColumn} from "../";
+import styles from './styles.module.scss';
 
 export interface TablePropsType {
   data: Array<Record<string, string>>;
@@ -9,7 +10,7 @@ export interface TablePropsType {
 
 export function Table({data, title, buttons}: TablePropsType) {
   return (
-    <div className="px-4 sm:px-6 lg:px-8">
+    <div className={styles.Table}>
       <div className="sm:flex sm:items-center">
         <div className="sm:flex-auto">
           <h1 className="text-base font-semibold leading-6 text-gray-900">
@@ -18,6 +19,7 @@ export function Table({data, title, buttons}: TablePropsType) {
         </div>
         <div className="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">{buttons}</div>
       </div>
+
       <div className="mt-8 flow-root">
         <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
           <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
