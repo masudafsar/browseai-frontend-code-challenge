@@ -1,10 +1,11 @@
 import * as classNames from "classnames";
 import styles from './styles.module.scss';
 import {ButtonHTMLAttributes, ReactNode} from "react";
+import {ColorThemeType} from "../../types";
 
 export interface ButtonPropsType extends ButtonHTMLAttributes<HTMLButtonElement> {
   title: string;
-  color?: 'primary' | 'success' | 'info' | 'warning' | 'error';
+  color?: ColorThemeType;
   variant?: 'text' | 'outline' | 'fill';
   size?: 'md';
   iconLeading?: ReactNode;
