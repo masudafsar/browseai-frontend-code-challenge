@@ -37,6 +37,7 @@ export default {
     colors: {
       white: '#ffffff',
       primary: {
+        50: '#F4EBFF', // TODO: set correct color code
         100: '#F4EBFF',
         200: '#E9D7FE',
         400: '#B692F6',
@@ -65,13 +66,10 @@ export default {
         800:'#05603A',
       },
       info: {
-        50:'',
+        50: '#f2f6ff', // TODO: set correct color code
         200:'#B2CCFF',
-        400:'',
-        500:'',
         600:'#155EEF',
         700:'#004EEB',
-        800:'',
       },
       warning: {
         50:'#FFFAEB',
