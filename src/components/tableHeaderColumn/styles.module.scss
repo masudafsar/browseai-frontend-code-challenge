@@ -1,8 +1,9 @@
 .TableHeaderColumn {
-  @apply px-3;
-  @apply py-3.5;
-  @apply text-left;
+  @apply px-6;
+  @apply py-3;
+  @apply bg-gray-50;
   @apply text-sm;
-  @apply font-semibold;
-  @apply text-gray-900;
+  @apply text-gray-600;
+  @apply text-left;
+  @apply font-normal;
 }

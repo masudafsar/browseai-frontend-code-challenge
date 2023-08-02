@@ -1,8 +1,11 @@
 .TableDataColumn {
-  @apply whitespace-nowrap;
-  @apply py-4;
-  @apply pl-4;
-  @apply pr-3;
+  @apply h-20;
+  @apply px-6;
+  @apply py-5;
+  @apply bg-gray-50;
   @apply text-sm;
-  @apply text-gray-900;
+  @apply text-gray-600;
+  @apply text-left;
+  @apply font-normal;
+  @apply whitespace-nowrap;
 }
