@@ -73,13 +73,45 @@
 }
 
 .ColorPrimary {
-  --color-main: theme('colors.primary.700');
-  --color-main-dark: theme('colors.primary.800');
+  --color-main: theme('colors.primary.600');
+  --color-main-dark: theme('colors.primary.700');
   --color-neutral: theme('colors.white');
   --color-disabled: theme('colors.primary.200');
 }
 
-.ColorSecondary {
+.ColorPrimary {
+  --color-main: theme('colors.primary.600');
+  --color-main-dark: theme('colors.primary.700');
+  --color-neutral: theme('colors.white');
+  --color-disabled: theme('colors.primary.200');
+}
+
+.ColorSuccess {
+  --color-main: theme('colors.success.600');
+  --color-main-dark: theme('colors.success.700');
+  --color-neutral: theme('colors.white');
+  --color-disabled: theme('colors.success.200');
+}
+
+.ColorInfo {
+  --color-main: theme('colors.info.600');
+  --color-main-dark: theme('colors.info.700');
+  --color-neutral: theme('colors.white');
+  --color-disabled: theme('colors.info.200');
+}
+
+.ColorWarning {
+  --color-main: theme('colors.warning.600');
+  --color-main-dark: theme('colors.warning.700');
+  --color-neutral: theme('colors.white');
+  --color-disabled: theme('colors.warning.200');
+}
+
+.ColorError {
+  --color-main: theme('colors.error.600');
+  --color-main-dark: theme('colors.error.700');
+  --color-neutral: theme('colors.white');
+  --color-disabled: theme('colors.error.200');
 }
 
 .SizeMd {

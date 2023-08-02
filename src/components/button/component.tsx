@@ -4,7 +4,7 @@ import {ButtonHTMLAttributes, ReactNode} from "react";
 
 export interface ButtonPropsType extends ButtonHTMLAttributes<HTMLButtonElement> {
   title: string;
-  color: 'primary' | 'secondary';
+  color: 'primary' | 'success' | 'info' | 'warning' | 'error';
   variant: 'text' | 'outline' | 'fill';
   size: 'md';
   iconLeading?: ReactNode;
@@ -31,9 +31,15 @@ export const Button = ({
 
   const colorStyles = color === 'primary'
     ? styles.ColorPrimary
-    : color === 'secondary'
-      ? styles.ColorSecondary
-      : '';
+    : color === 'success'
+      ? styles.ColorSuccess
+      : color === 'info'
+        ? styles.ColorInfo
+        : color === 'warning'
+          ? styles.ColorWarning
+          : color === 'error'
+            ? styles.ColorError
+            : '';
 
   const sizeStyles = size === 'md'
     ? styles.SizeMd
