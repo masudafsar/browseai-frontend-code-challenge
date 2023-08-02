@@ -1,49 +1,27 @@
-import {ReactNode} from "react";
-import {TableDataColumn, TableHeaderColumn} from "../";
+import {TableDataRow, TableDataRowPropsType, TableHeaderColumn} from "../";
 import styles from './styles.module.scss';
 
 export interface TablePropsType {
-  data: Array<Record<string, string>>;
-  title: string;
-  buttons: ReactNode;
+  data: Array<TableDataRowPropsType>;
 }
 
-export function Table({data, title, buttons}: TablePropsType) {
+export function Table({data}: TablePropsType) {
   return (
-    <div className={styles.Table}>
-      <div className="sm:flex sm:items-center">
-        <div className="sm:flex-auto">
-          <h1 className="text-base font-semibold leading-6 text-gray-900">
-            {title}
-          </h1>
-        </div>
-        <div className="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">{buttons}</div>
-      </div>
-
-      <div className="mt-8 flow-root">
-        <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-          <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
-            <table className="min-w-full divide-y divide-gray-300">
-              <thead>
-              <tr>
-                {Object.entries(data[0]).map(([key, value]) => (
-                  <TableHeaderColumn key={key} value={key}/>
-                ))}
-              </tr>
-              </thead>
-              <tbody className="divide-y divide-gray-200">
-              {data.map((row, index) => (
-                <tr key={index}>
-                  {Object.entries(row).map(([key, value]) => (
-                    <TableDataColumn key={key} value={value}/>
-                  ))}
-                </tr>
-              ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
+    <div className={styles.Table_Root}>
+      <table className={styles.Table_Table}>
+        <thead className={styles.Table_TableHeader}>
+        <tr>
+          {Object.entries(data[0].data).map(([key, _]) => (
+            <TableHeaderColumn key={key} value={key}/>
+          ))}
+        </tr>
+        </thead>
+        <tbody className={styles.Table_TableBody}>
+        {data.map((row, index) => (
+          <TableDataRow key={index} data={row.data} color={row.color}/>
+        ))}
+        </tbody>
+      </table>
     </div>
   );
 }

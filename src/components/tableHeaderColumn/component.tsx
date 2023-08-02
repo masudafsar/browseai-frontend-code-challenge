@@ -4,7 +4,7 @@ export interface TableHeaderColumnPropsType {
   value: string;
 }
 
-export const TableHeaderColumn = ({value}: TableHeaderColumnPropsType) => {
+export function TableHeaderColumn({value}: TableHeaderColumnPropsType) {
   return (
     <th
       scope="col"
@@ -13,4 +13,4 @@ export const TableHeaderColumn = ({value}: TableHeaderColumnPropsType) => {
       {value}
     </th>
   );
-};
+}

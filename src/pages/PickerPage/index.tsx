@@ -2,11 +2,11 @@ import {ChangeEventHandler} from "react";
 import {GitHubIcon} from "../../icons/githubIcon";
 import {Card, FilePicker} from "../../components";
 
-export interface PickerPagePropsTyps {
+export interface PickerPagePropsTypes {
   setSelectedFile: ChangeEventHandler<HTMLInputElement>;
 }
 
-export function PickerPage({setSelectedFile}: PickerPagePropsTyps) {
+export function PickerPage({setSelectedFile}: PickerPagePropsTypes) {
   return (
     <Card>
       <Card.Header>

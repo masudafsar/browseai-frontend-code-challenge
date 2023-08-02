@@ -1,5 +1,21 @@
-.Table {
-  @apply px-4;
-  @apply sm:px-6;
-  @apply lg:px-8;
+.Table_Root {
+}
+
+.Table_Table {
+  @apply min-w-full;
+  @apply bg-white;
+  @apply border-t;
+  @apply border-solid;
+  @apply border-gray-200;
+  @apply divide-y;
+  @apply divide-gray-200;
+}
+
+.Table_TableHeader {
+  @apply divide-y;
+  @apply divide-gray-200;
+}
+
+.Table_TableBody {
+  @extend .Table_TableHeader;
 }
