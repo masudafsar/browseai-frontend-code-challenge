@@ -1,30 +1,82 @@
 .Button {
-  @apply block;
-  @apply rounded-md;
-  @apply bg-indigo-600;
-  @apply px-3;
-  @apply py-2;
-  @apply text-center;
+  @apply flex;
+  @apply items-center;
+  @apply gap-2;
+  @apply rounded-sm;
   @apply text-sm;
   @apply font-semibold;
-  @apply text-white;
-  @apply shadow-sm;
-  @apply hover:bg-indigo-500;
+  @apply text-center;
+
   @apply focus-visible:outline;
   @apply focus-visible:outline-2;
   @apply focus-visible:outline-offset-2;
-  @apply focus-visible:outline-indigo-600
+}
 
 .VariantText {
+  @apply text-[var(--color-main)];
+  @apply stroke-[var(--color-main)];
+  @apply bg-[var(--color-neutral)];
+
+  @apply hover:text-[var(--color-main-dark)];
+  @apply hover:stroke-[var(--color-main-dark)];
+
+  @apply focus:text-[var(--color-main)];
+  @apply focus:stroke-[var(--color-main)];
+  @apply focus-visible:outline-[var(--color-main)];
+
+  @apply disabled:text-[var(--color-disabled)];
+  @apply disabled:stroke-[var(--color-disabled)];
 }
 
 .VariantOutline {
+  @apply px-4;
+  @apply py-2.5;
+  @apply shadow-xs;
+  @apply border;
+  @apply border-solid;
+
+  @apply bg-[var(--color-neutral)];
+  @apply text-[var(--color-main)];
+  @apply stroke-[var(--color-main)];
+  @apply border-[var(--color-main)];
+
+  @apply hover:text-[var(--color-main-dark)];
+  @apply hover:stroke-[var(--color-main-dark)];
+  @apply hover:border-[var(--color-main-dark)];
+
+  @apply focus:text-[var(--color-main)];
+  @apply focus:stroke-[var(--color-main)];
+  @apply focus:border-[var(--color-main)];
+
+  @apply disabled:text-[var(--color-disabled)];
+  @apply disabled:stroke-[var(--color-disabled)];
+  @apply disabled:border-[var(--color-disabled)];
 }
 
 .VariantFill {
+  @extend .VariantOutline;
+
+  @apply text-[var(--color-neutral)] #{!important};
+  @apply stroke-[var(--color-neutral)] #{!important};
+  @apply bg-[var(--color-main)];
+
+  @apply hover:bg-[var(--color-main-dark)];
+  @apply hover:border-[var(--color-main-dark)];
+
+  @apply focus:bg-[var(--color-main)];
+  @apply focus:border-[var(--color-main)];
+  @apply focus-visible:outline-offset-0;
+  @apply focus-visible:outline-[var(--color-disabled)];
+
+  @apply disabled:bg-[var(--color-disabled)];
+  @apply disabled:border-[var(--color-disabled)];
 }
 
 .ColorPrimary {
+  --color-main: theme('colors.primary.700');
+  --color-main-dark: theme('colors.primary.800');
+  --color-neutral: theme('colors.white');
+  --color-disabled: theme('colors.primary.200');
 }
 
 .ColorSecondary {

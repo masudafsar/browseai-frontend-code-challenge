@@ -1,20 +1,24 @@
 import * as classNames from "classnames";
 import styles from './styles.module.scss';
-import {ButtonHTMLAttributes} from "react";
+import {ButtonHTMLAttributes, ReactNode} from "react";
 
 export interface ButtonPropsType extends ButtonHTMLAttributes<HTMLButtonElement> {
   title: string;
   color: 'primary' | 'secondary';
   variant: 'text' | 'outline' | 'fill';
   size: 'md';
+  iconLeading?: ReactNode;
+  iconTrailing?: ReactNode;
 }
 
 export const Button = ({
                          title,
                          onClick,
-                         variant = 'text',
+                         variant = 'fill',
                          color = 'primary',
                          size = 'md',
+                         iconLeading,
+                         iconTrailing,
                          ...props
                        }: ButtonPropsType) => {
   const variantStyles = variant === 'text'
@@ -41,7 +45,9 @@ export const Button = ({
       onClick={onClick}
       {...props}
     >
+      {iconLeading}
       {title}
+      {iconTrailing}
     </button>
   );
 };

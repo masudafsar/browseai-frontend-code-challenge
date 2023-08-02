@@ -3,22 +3,25 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     borderRadius: {
-      sm: '8px',
-      md: '10px',
-      lg: '12px',
+      none:'unset',
+      sm: '.500rem',
+      md: '.625rem',
+      lg: '.750rem',
     },
     fontFamily: {
       sans: ['Inter', 'sans-serif'],
     },
     fontSize: {
       sm: ['12px','18px'],
-      base: ['14px','20px'],
+      md: ['14px','20px'],
+      base: ['16px','24px'],
       lg: ['18px','28px'],
     },
     colors: {
       white: '#ffffff',
       primary: {
         100: '#F4EBFF',
+        200: '#E9D7FE',
         400: '#B692F6',
         600: '#7F56D9',
         700: '#6941C6',
@@ -28,6 +31,7 @@ export default {
         50:'#F9FAFB',
         100:'#F2F4F7',
         200:'#EAECF0',
+        300:'#D0D5DD',
         400:'#98A2B3',
         500:'#667085',
         600:'#475467',
@@ -56,6 +60,10 @@ export default {
         600:'#D92D20',
         800:'#912018',
       },
+    },
+    boxShadow: {
+      none: 'unset',
+      xs: '0px 1px 2px 0px rgba(16, 24, 40, 0.05);',
     },
     extend: {},
   },
