@@ -4,9 +4,9 @@ import {ButtonHTMLAttributes, ReactNode} from "react";
 
 export interface ButtonPropsType extends ButtonHTMLAttributes<HTMLButtonElement> {
   title: string;
-  color: 'primary' | 'success' | 'info' | 'warning' | 'error';
-  variant: 'text' | 'outline' | 'fill';
-  size: 'md';
+  color?: 'primary' | 'success' | 'info' | 'warning' | 'error';
+  variant?: 'text' | 'outline' | 'fill';
+  size?: 'md';
   iconLeading?: ReactNode;
   iconTrailing?: ReactNode;
 }
