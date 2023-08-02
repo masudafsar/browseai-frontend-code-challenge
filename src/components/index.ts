@@ -7,3 +7,4 @@ export * from './cardHeader';
 export * from './cardBody';
 export * from "./cardHeaderIcon";
 export * from "./cardHeaderTitle";
+export * from "./filePicker";

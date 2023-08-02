@@ -7,6 +7,7 @@ export default {
       sm: '.500rem',
       md: '.625rem',
       lg: '.750rem',
+      full: '9999rem',
     },
     fontFamily: {
       sans: ['Inter', 'sans-serif'],
