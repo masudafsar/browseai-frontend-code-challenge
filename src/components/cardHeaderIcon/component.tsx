@@ -7,7 +7,7 @@ export interface CardHeaderIconPropsType {
 
 export function CardHeaderIcon({icon}: CardHeaderIconPropsType) {
   return (
-    <div className={styles.CardHeaderIcon}>
+    <div className={styles.CardHeaderIcon_Root}>
       {icon}
     </div>
   );
