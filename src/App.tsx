@@ -1,8 +1,9 @@
 import {Octokit} from "octokit";
 import {CurrentPageType, ResultTableDataType, ReviewTableDataType} from "./types";
-import {Table, TableDataRowPropsType} from "./components";
+import {TableDataRowPropsType} from "./components";
 import {useCallback, useEffect, useState} from "react";
 import {PickerPage, ReviewPage} from "./pages";
+import {ResultsPage} from "./pages/ResultsPage";
 
 function App() {
   const [currentPage, setCurrentPage] = useState<CurrentPageType>("PickerPage");
@@ -72,7 +73,7 @@ function App() {
         />*/
       )}
       {currentPage === "ResultsPage" && (
-        <Table data={[]}/>
+        <ResultsPage/>
       )}
     </div>
   );
