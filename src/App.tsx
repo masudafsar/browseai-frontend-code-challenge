@@ -1,17 +1,14 @@
 import {Octokit} from "octokit";
 import {CurrentPageType, ResultTableDataType, ReviewTableDataType} from "./types";
-import {Button, Table} from "./components";
+import {Table, TableDataRowPropsType} from "./components";
 import {useCallback, useEffect, useState} from "react";
-import {PickerPage} from "./pages/PickerPage";
+import {PickerPage, ReviewPage} from "./pages";
 
 function App() {
-  const [currentPage, setCurrentPage] =
-    useState<CurrentPageType>("PickerPage");
+  const [currentPage, setCurrentPage] = useState<CurrentPageType>("PickerPage");
   const [selectedFile, setSelectedFile] = useState<File>();
-  const [reviewData, setReviewData] =
-    useState<Array<ReviewTableDataType>>();
-  const [resultData, setResultData] =
-    useState<Array<ResultTableDataType>>();
+  const [reviewData, setReviewData] = useState<Array<ReviewTableDataType>>();
+  const [resultData, setResultData] = useState<Array<ResultTableDataType>>();
 
   const parseCSV = useCallback(async (file: File) => {
     const text = await file.text();
@@ -42,7 +39,10 @@ function App() {
         <PickerPage setSelectedFile={event => setSelectedFile(event.target.files?.[0])}/>
       )}
       {currentPage === "ReviewPage" && reviewData && (
-        <Table
+        <ReviewPage
+          data={reviewData.map<TableDataRowPropsType>(item => ({data: item}))}
+        />
+        /*<Table
           data={reviewData}
           title="Review"
           buttons={
@@ -69,10 +69,10 @@ function App() {
               />
             </>
           }
-        />
+        />*/
       )}
       {currentPage === "ResultsPage" && (
-        <Table data={resultData} title="Results"/>
+        <Table data={[]}/>
       )}
     </div>
   );
