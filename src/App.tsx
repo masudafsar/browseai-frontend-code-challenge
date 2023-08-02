@@ -1,8 +1,8 @@
-import * as classNames from "classnames";
 import {Octokit} from "octokit";
 import {CurrentPageType, ResultTableDataType, ReviewTableDataType} from "./types";
 import {Button, Table} from "./components";
 import {useCallback, useEffect, useState} from "react";
+import {PickerPage} from "./pages/PickerPage";
 
 function App() {
   const [currentPage, setCurrentPage] =
@@ -37,22 +37,9 @@ function App() {
   const octokit = new Octokit({auth: "your_personal_access_tokens"});
 
   return (
-    <div className="flex flex-col items-center justify-center">
+    <div className="container mt-24">
       {currentPage === "PickerPage" && (
-        <input
-          className={classNames(
-            // button colors
-            "file:bg-violet-50 file:text-violet-500 hover:file:bg-violet-100",
-            // button shape and spacing
-            "file:rounded-lg file:rounded-tr-none file:rounded-br-none",
-            "file:px-4 file:py-2 file:mr-4 file:border-none",
-            // overall input styling
-            "hover:cursor-pointer border rounded-lg text-gray-400"
-          )}
-          type="file"
-          onChange={(event) => setSelectedFile(event.target.files?.[0])}
-          accept=".csv"
-        />
+        <PickerPage setSelectedFile={event => setSelectedFile(event.target.files?.[0])}/>
       )}
       {currentPage === "ReviewPage" && reviewData && (
         <Table
