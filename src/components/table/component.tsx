@@ -1,5 +1,6 @@
 import {TableDataRow, TableDataRowPropsType, TableHeaderColumn} from "../";
 import styles from './styles.module.scss';
+import {keyToText} from "../../utils/string";
 
 export interface TablePropsType {
   data: Array<TableDataRowPropsType>;
@@ -12,7 +13,7 @@ export function Table({data}: TablePropsType) {
         <thead className={styles.Table_TableHeader}>
         <tr>
           {Object.entries(data[0].data).map(([key, _]) => (
-            <TableHeaderColumn key={key} value={key}/>
+            <TableHeaderColumn key={key} value={keyToText(key)}/>
           ))}
         </tr>
         </thead>
