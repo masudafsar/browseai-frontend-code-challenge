@@ -37,7 +37,7 @@ function App() {
   const octokit = new Octokit({auth: "your_personal_access_tokens"});
 
   return (
-    <div className="container mx-auto mt-24">
+    <div className="container mt-24">
       {currentPage === "PickerPage" && (
         <PickerPage setSelectedFile={event => setSelectedFile(event.target.files?.[0])}/>
       )}

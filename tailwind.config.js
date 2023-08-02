@@ -2,6 +2,22 @@
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
+    screens: {
+      sm: '640px',
+      md: '768px',
+      lg: '1440px',
+    },
+    container: {
+      center: true,
+      screens: {
+        sm: '640px',
+        md: '768px',
+        lg: '980px',
+      },
+      padding: {
+        DEFAULT: '1rem',
+      },
+    },
     borderRadius: {
       none:'unset',
       sm: '.500rem',
