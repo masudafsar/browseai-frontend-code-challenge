@@ -1,19 +1,18 @@
 import {createBrowserRouter} from "react-router-dom";
-import {PickerPage, ReviewPage} from "./pages";
-import {ResultsPage} from "./pages/ResultsPage";
+import {PickerPage, ResultsPage, ReviewPage} from "./pages";
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <PickerPage/>
+    element: <PickerPage/>,
   },
   {
     path: '/review',
-    element: <ReviewPage/>
+    element: <ReviewPage/>,
   },
   {
     path: '/result',
-    element: <ResultsPage/>
+    element: <ResultsPage/>,
   },
 ]);
 

@@ -1,3 +1,6 @@
 import {AppContextType} from "./appContextType";
 
-export const defaultAppContextValue: AppContextType = {};
+export const defaultAppContextValue: AppContextType = {
+  searchCases: [],
+  setSearchCases: () => [],
+};
