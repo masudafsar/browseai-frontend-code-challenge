@@ -7,7 +7,7 @@ export interface ButtonPropsType extends ButtonHTMLAttributes<HTMLButtonElement>
   title: string;
   color?: ColorThemeType;
   variant?: 'text' | 'outline' | 'fill';
-  size?: 'md';
+  size?: 'sm' | 'md' | 'lg';
   iconLeading?: ReactNode;
   iconTrailing?: ReactNode;
 }
@@ -43,9 +43,13 @@ export const Button = ({
             ? styles.ColorError
             : '';
 
-  const sizeStyles = size === 'md'
-    ? styles.SizeMd
-    : '';
+  const sizeStyles = size === 'sm'
+    ? styles.SizeSm
+    : size === 'md'
+      ? styles.SizeMd
+      : size === 'lg'
+        ? styles.SizeLg
+        : '';
 
   return (
     <button

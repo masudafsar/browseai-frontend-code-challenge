@@ -35,6 +35,7 @@ export default {
       lg: ['18px','28px'],
     },
     colors: {
+      transparent:'transparent',
       white: '#ffffff',
       primary: {
         50: '#F4EBFF', // TODO: set correct color code
@@ -94,7 +95,16 @@ export default {
       sm: '0px 1px 2px 0px rgba(16, 24, 40, 0.05);',
       md: '0px 1px 2px 0px rgba(16, 24, 40, 0.06), 0px 1px 3px 0px rgba(16, 24, 40, 0.10);'
     },
-    extend: {},
+    extend: {
+      spacing:{
+        '0.5': '0.125rem',
+        '1.5': '0.375rem',
+        '2.5': '0.625rem',
+        '3.5': '0.875rem',
+        '4.5': '1.125rem',
+        '5.5': '1.375rem',
+      }
+    },
   },
   plugins: [],
 };
