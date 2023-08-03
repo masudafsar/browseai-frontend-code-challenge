@@ -8,7 +8,7 @@ export interface ReviewPagePropsTypes {
 }
 
 export function ReviewPage({}: ReviewPagePropsTypes) {
-  const {searchCases} = useContext(AppContext);
+  const {searchCases, setSearchCases} = useContext(AppContext);
   const navigate = useNavigate();
 
   const tableData = useMemo(
@@ -18,6 +18,15 @@ export function ReviewPage({}: ReviewPagePropsTypes) {
     })),
     [searchCases]
   );
+
+  const invalidSearchCount = useMemo(
+    () => searchCases.filter(item => item.status === 'invalid').length,
+    [searchCases]
+  );
+
+  function removeInvalidCases() {
+    setSearchCases(prev => prev.filter(item => item.status !== 'invalid'));
+  }
 
   return (
     <div className="my-16">
@@ -32,6 +41,20 @@ export function ReviewPage({}: ReviewPagePropsTypes) {
       <Card>
         <Card.Header>
           <Card.Header.Title title='Review CSV File'/>
+          <Card.Header.Actions className="flex gap-3 shrink-0">
+            {invalidSearchCount > 0 ? <Button
+              title={`Delete ${invalidSearchCount} ${invalidSearchCount === 1 ? 'Error' : 'Errors'}`}
+              color="warning"
+              variant="outline"
+              onClick={removeInvalidCases}
+            /> : undefined}
+            <Button
+              title="Start Searching"
+              color="primary"
+              disabled={searchCases.length === 0 || invalidSearchCount !== 0}
+              variant="fill"
+            />
+          </Card.Header.Actions>
         </Card.Header>
         <Card.Body>
           <Table data={tableData}/>
