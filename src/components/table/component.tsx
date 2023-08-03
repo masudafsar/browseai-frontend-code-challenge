@@ -12,7 +12,7 @@ export function Table({data}: TablePropsType) {
       <table className={styles.Table_Table}>
         <thead className={styles.Table_TableHeader}>
         <tr>
-          {Object.entries(data[0].data).map(([key, _]) => (
+          {Object.entries(data[0]?.data || {}).map(([key, _]) => (
             <TableHeaderColumn key={key} value={keyToText(key)}/>
           ))}
         </tr>

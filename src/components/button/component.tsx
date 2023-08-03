@@ -20,6 +20,7 @@ export const Button = ({
                          size = 'md',
                          iconLeading,
                          iconTrailing,
+                         className,
                          ...props
                        }: ButtonPropsType) => {
   const variantStyles = variant === 'text'
@@ -48,7 +49,7 @@ export const Button = ({
 
   return (
     <button
-      className={classNames(styles.Button, variantStyles, colorStyles, sizeStyles)}
+      className={classNames(styles.Button, variantStyles, colorStyles, sizeStyles, className)}
       onClick={onClick}
       {...props}
     >
