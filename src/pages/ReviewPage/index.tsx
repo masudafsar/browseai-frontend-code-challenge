@@ -29,7 +29,7 @@ export function ReviewPage({}: ReviewPagePropsTypes) {
   }
 
   return (
-    <div className="my-16">
+    <div className="mt-16 mb-24">
       <Button
         title="Upload New CSV"
         variant="text"
@@ -57,7 +57,11 @@ export function ReviewPage({}: ReviewPagePropsTypes) {
           </Card.Header.Actions>
         </Card.Header>
         <Card.Body>
-          <Table data={tableData}/>
+          {tableData.length > 0 ? (
+            <Table data={tableData}/>
+          ) : (
+            <p>empty</p>
+          )}
         </Card.Body>
       </Card>
     </div>

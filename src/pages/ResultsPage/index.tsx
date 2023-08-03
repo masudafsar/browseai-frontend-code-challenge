@@ -20,7 +20,7 @@ export function ResultsPage({}: ResultsPagePropsTypes) {
   );
 
   return (
-    <div className="my-16">
+    <div className="mt-16 mb-24">
       <Button
         title="Upload New CSV"
         variant="text"
