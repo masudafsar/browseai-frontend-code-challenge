@@ -13,9 +13,11 @@
 }
 
 .VariantText {
+  @apply p-0 #{!important};
+
   @apply text-[var(--color-main)];
   @apply stroke-[var(--color-main)];
-  @apply bg-[var(--color-neutral)];
+  @apply bg-transparent;
 
   @apply hover:text-[var(--color-main-dark)];
   @apply hover:stroke-[var(--color-main-dark)];
@@ -29,8 +31,6 @@
 }
 
 .VariantOutline {
-  @apply px-4;
-  @apply py-2.5;
   @apply shadow-sm;
   @apply border;
   @apply border-solid;
@@ -107,5 +107,20 @@
   --color-disabled: theme('colors.error.200');
 }
 
+.SizeSm {
+  @apply text-sm;
+  @apply px-3.5;
+  @apply py-2;
+}
+
 .SizeMd {
+  @apply text-sm;
+  @apply px-4;
+  @apply py-2.5;
+}
+
+.SizeLg {
+  @apply text-base;
+  @apply px-4.5;
+  @apply py-2.5;
 }
