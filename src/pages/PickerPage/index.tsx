@@ -18,6 +18,7 @@ export function PickerPage({}: PickerPagePropsTypes) {
     const reader = new FileReader();
     reader.onloadstart = async function () {
       setIsLoading(true);
+      setSearchCases([]);
     }
     reader.onload = async function (event) {
       const rawText = event.target?.result;
