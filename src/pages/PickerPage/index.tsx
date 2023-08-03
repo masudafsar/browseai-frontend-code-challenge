@@ -1,5 +1,5 @@
 import {ChangeEvent, useCallback, useContext, useState} from "react";
-import {GitHubIcon} from "../../icons/githubIcon";
+import {GitHubIcon} from "../../icons";
 import {Card, FilePicker} from "../../components";
 import {AppContext} from "../../contexts/appContext";
 import {SearchCaseType} from "../../types";

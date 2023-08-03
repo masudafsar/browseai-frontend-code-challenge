@@ -1,5 +1,5 @@
 import {forwardRef, InputHTMLAttributes} from "react";
-import {UploadCloudIcon} from "../../icons/uploadCloudIcon";
+import {UploadCloudIcon} from "../../icons";
 import styles from './styles.module.scss';
 import * as classNames from "classnames";
 
