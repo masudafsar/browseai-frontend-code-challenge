@@ -45,23 +45,25 @@ export function PickerPage({}: PickerPagePropsTypes) {
   }, [setSearchCases]);
 
   return (
-    <Card>
-      <Card.Header>
-        <Card.Header.Icon icon={<GitHubIcon/>}/>
-        <Card.Header.Title
-          title='Github Repository Finder'
-          supportingText='Please choose a CSV file which contains Search Keywords, Username and Context.'
-        />
-      </Card.Header>
-      <Card.Body>
-        <div className="p-6 pt-4">
-          <FilePicker
-            disabled={isLoading}
-            onChange={pickFileHandler}
-            accept=".csv"
+    <div className="my-24">
+      <Card>
+        <Card.Header>
+          <Card.Header.Icon icon={<GitHubIcon/>}/>
+          <Card.Header.Title
+            title='Github Repository Finder'
+            supportingText='Please choose a CSV file which contains Search Keywords, Username and Context.'
           />
-        </div>
-      </Card.Body>
-    </Card>
+        </Card.Header>
+        <Card.Body>
+          <div className="p-6 pt-4">
+            <FilePicker
+              disabled={isLoading}
+              onChange={pickFileHandler}
+              accept=".csv"
+            />
+          </div>
+        </Card.Body>
+      </Card>
+    </div>
   );
 }

@@ -7,7 +7,7 @@ function App() {
 
   return (
     <AppContextProvider>
-      <div className="container my-24">
+      <div className="container">
         <RouterProvider router={router}/>
         {/*{currentPage === "PickerPage" && (
           <PickerPage setSelectedFile={event => setSelectedFile(event.target.files?.[0])}/>)}

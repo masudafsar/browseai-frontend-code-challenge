@@ -1,6 +1,7 @@
-import {Card, Table, TableDataRowPropsType} from "../../components";
+import {Button, Card, Table, TableDataRowPropsType} from "../../components";
 import {useContext, useMemo} from "react";
 import {AppContext} from "../../contexts/appContext";
+import {ArrowLeftIcon} from "../../icons";
 
 export interface ReviewPagePropsTypes {
 }
@@ -17,13 +18,22 @@ export function ReviewPage({}: ReviewPagePropsTypes) {
   );
 
   return (
-    <Card>
-      <Card.Header>
-        <Card.Header.Title title='Review CSV File'/>
-      </Card.Header>
-      <Card.Body>
-        <Table data={tableData}/>
-      </Card.Body>
-    </Card>
+    <div className="my-16">
+      <Button
+        title="Upload New CSV"
+        variant="text"
+        size="md"
+        className="mb-3"
+        iconLeading={<ArrowLeftIcon/>}
+      />
+      <Card>
+        <Card.Header>
+          <Card.Header.Title title='Review CSV File'/>
+        </Card.Header>
+        <Card.Body>
+          <Table data={tableData}/>
+        </Card.Body>
+      </Card>
+    </div>
   );
 }
