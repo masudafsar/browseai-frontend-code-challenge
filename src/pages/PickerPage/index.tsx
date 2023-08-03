@@ -1,8 +1,8 @@
 import {ChangeEvent, useCallback, useContext, useState} from "react";
-import {GitHubIcon} from "../../icons/githubIcon";
+import {GitHubIcon} from "../../icons";
 import {Card, FilePicker} from "../../components";
 import {AppContext} from "../../contexts/appContext";
-import {SearchCaseType} from "../../types";
+import {SearchCaseInputDataType, SearchCaseType} from "../../types";
 import {useNavigate} from "react-router-dom";
 
 export interface PickerPagePropsTypes {
@@ -24,16 +24,27 @@ export function PickerPage({}: PickerPagePropsTypes) {
       const rawText = event.target?.result;
       if (typeof rawText !== "string") return;
       const cases: SearchCaseType[] = [];
+
+      function validation(item: SearchCaseInputDataType) {
+        if (!item.searchKeywords) return false;
+        return cases.filter(searchCase =>
+          searchCase.data.searchKeywords === item.searchKeywords &&
+          searchCase.data.username === item.username &&
+          searchCase.data.context === item.context
+        ).length === 0;
+      }
+
       rawText.split('\n').forEach((line) => {
         const [searchKeywords, username, context] = line.split(',');
+        const data: SearchCaseInputDataType = {
+          searchKeywords,
+          username,
+          context,
+        };
         const searchCase: SearchCaseType = {
-          data: {
-            searchKeywords,
-            username,
-            context,
-          },
+          data: {...data},
           results: [],
-          status: "idle",
+          status: validation(data) ? "idle" : "invalid",
         };
         cases.push(searchCase);
       });
