@@ -1,12 +1,13 @@
 import {forwardRef, InputHTMLAttributes} from "react";
 import {UploadCloudIcon} from "../../icons/uploadCloudIcon";
 import styles from './styles.module.scss';
+import * as classNames from "classnames";
 
 export interface FilePickerPropsType extends InputHTMLAttributes<HTMLInputElement> {
 }
 
 export const FilePicker = forwardRef<HTMLInputElement, FilePickerPropsType>((props, ref) => (
-  <div className={styles.FilePicker_Root}>
+  <div className={classNames(styles.FilePicker_Root, props.disabled && styles.FilePicker_Disabled)}>
     <label className={styles.FilePicker_Picker}>
 
       <div className={styles.FilePicker_UploadIcon}>

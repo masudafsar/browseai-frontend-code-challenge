@@ -1,6 +1,17 @@
 .FilePicker_Root {
-  @apply p-6;
-  @apply pt-4;
+  &.FilePicker_Disabled {
+    .FilePicker_UploadIcon {
+      @apply stroke-gray-300;
+    }
+
+    .FilePicker_HelpNote {
+      @apply text-gray-300;
+
+      span {
+        @apply text-gray-300;
+      }
+    }
+  }
 }
 
 .FilePicker_Picker {
