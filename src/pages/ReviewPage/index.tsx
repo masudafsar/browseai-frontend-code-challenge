@@ -2,12 +2,14 @@ import {Button, Card, Table, TableDataRowPropsType} from "../../components";
 import {useContext, useMemo} from "react";
 import {AppContext} from "../../contexts/appContext";
 import {ArrowLeftIcon} from "../../icons";
+import {useNavigate} from "react-router-dom";
 
 export interface ReviewPagePropsTypes {
 }
 
 export function ReviewPage({}: ReviewPagePropsTypes) {
   const {searchCases} = useContext(AppContext);
+  const navigate = useNavigate();
 
   const tableData = useMemo(
     () => searchCases.map<TableDataRowPropsType>(item => ({
@@ -25,6 +27,7 @@ export function ReviewPage({}: ReviewPagePropsTypes) {
         size="md"
         className="mb-3"
         iconLeading={<ArrowLeftIcon/>}
+        onClick={() => navigate('/')}
       />
       <Card>
         <Card.Header>
