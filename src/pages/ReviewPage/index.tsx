@@ -5,6 +5,7 @@ import {Button, Card, Table} from "../../components";
 import {AppContext, type RowRendererType} from "../../contexts";
 import {ArrowLeftIcon} from "../../icons";
 import {type SearchCaseType} from "../../types";
+import {EmptyList} from "../../components";
 
 export interface ReviewPagePropsTypes {
 }
@@ -78,7 +79,7 @@ export function ReviewPage({}: ReviewPagePropsTypes) {
               )}
             />
           ) : (
-            <p>empty</p>
+            <EmptyList/>
           )}
         </Card.Body>
       </Card>

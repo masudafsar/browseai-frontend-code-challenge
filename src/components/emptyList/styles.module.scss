@@ -1,0 +1,18 @@
+.EmptyList_Root {
+  @apply w-full;
+  @apply h-full;
+  @apply flex;
+  @apply flex-col;
+  @apply gap-3;
+  @apply items-center;
+  @apply justify-center;
+}
+
+.EmptyList_HelpNote {
+  @apply text-md;
+  @apply text-gray-600;
+
+  span {
+    @apply text-primary-700;
+  }
+}
