@@ -1,7 +1,7 @@
 import {ChangeEvent, useCallback, useContext, useState} from "react";
 import {GitHubIcon} from "../../icons";
 import {Card, FilePicker} from "../../components";
-import {AppContext} from "../../contexts/appContext";
+import {AppContext} from "../../contexts";
 import {SearchCaseInputDataType, SearchCaseType} from "../../types";
 import {useNavigate} from "react-router-dom";
 
@@ -23,18 +23,10 @@ export function PickerPage({}: PickerPagePropsTypes) {
     reader.onload = async function (event) {
       const rawText = event.target?.result;
       if (typeof rawText !== "string") return;
+      const lines = rawText.split('\n');
       const cases: SearchCaseType[] = [];
 
-      function validation(item: SearchCaseInputDataType) {
-        if (!item.searchKeywords) return false;
-        return cases.filter(searchCase =>
-          searchCase.data.searchKeywords === item.searchKeywords &&
-          searchCase.data.username === item.username &&
-          searchCase.data.context === item.context
-        ).length === 0;
-      }
-
-      rawText.split('\n').forEach((line) => {
+      lines.forEach((line, lineIndex) => {
         const [searchKeywords, username, context] = line.split(',');
         const data: SearchCaseInputDataType = {
           searchKeywords,
@@ -44,19 +36,19 @@ export function PickerPage({}: PickerPagePropsTypes) {
         const searchCase: SearchCaseType = {
           data: {...data},
           results: [],
-          status: validation(data) ? "idle" : "invalid",
+          status: data.searchKeywords && lines.slice(0, lineIndex + 1).filter(item => item === line).length === 1 ? "idle" : "invalid",
         };
         cases.push(searchCase);
       });
       setSearchCases(cases);
+      setIsLoading(false);
+      navigate('/review');
     }
     reader.readAsText(event.target.files?.[0]);
-    setIsLoading(false);
-    navigate('/review');
   }, [setSearchCases]);
 
   return (
-    <div className="my-24">
+    <div className="py-24 flex flex-col h-screen">
       <Card>
         <Card.Header>
           <Card.Header.Icon icon={<GitHubIcon/>}/>

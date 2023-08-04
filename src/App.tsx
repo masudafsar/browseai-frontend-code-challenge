@@ -1,6 +1,6 @@
 import router from "./router";
 import {RouterProvider} from "react-router-dom";
-import {AppContextProvider} from "./providers/appContextProvider";
+import {AppContextProvider} from "./providers";
 
 function App() {
   // const octokit = new Octokit({auth: "your_personal_access_tokens"});

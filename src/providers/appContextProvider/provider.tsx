@@ -1,5 +1,5 @@
 import {PropsWithChildren, useState} from "react";
-import {AppContext} from "../../contexts/appContext";
+import {AppContext} from "../../contexts";
 import {SearchCaseType} from "../../types";
 
 export interface AppContextProviderPropsType {

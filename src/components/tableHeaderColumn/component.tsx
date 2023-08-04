@@ -1,10 +1,10 @@
 import styles from './styles.module.scss';
 
-export interface TableHeaderColumnPropsType {
+export interface TableHeaderCellPropsType {
   value: string;
 }
 
-export function TableHeaderColumn({value}: TableHeaderColumnPropsType) {
+export function TableHeaderCell({value}: TableHeaderCellPropsType) {
   return (
     <th
       scope="col"

@@ -1,8 +1,10 @@
-import {Button, Card, Table, TableDataRowPropsType} from "../../components";
-import {useContext, useMemo} from "react";
-import {AppContext} from "../../contexts/appContext";
-import {ArrowLeftIcon} from "../../icons";
+import {useCallback, useContext, useMemo} from "react";
 import {useNavigate} from "react-router-dom";
+
+import {Button, Card, Table} from "../../components";
+import {AppContext, type RowRendererType} from "../../contexts";
+import {ArrowLeftIcon} from "../../icons";
+import {type SearchCaseType} from "../../types";
 
 export interface ReviewPagePropsTypes {
 }
@@ -11,25 +13,30 @@ export function ReviewPage({}: ReviewPagePropsTypes) {
   const {searchCases, setSearchCases} = useContext(AppContext);
   const navigate = useNavigate();
 
-  const tableData = useMemo(
-    () => searchCases.map<TableDataRowPropsType>(item => ({
-      data: {...item.data},
-      color: item.status === "invalid" ? 'error' : undefined,
-    })),
-    [searchCases]
-  );
-
   const invalidSearchCount = useMemo(
     () => searchCases.filter(item => item.status === 'invalid').length,
     [searchCases]
   );
+
+  const rowRenderer = useCallback<RowRendererType<SearchCaseType>>(function (data, index) {
+    return (
+      <Table.Row
+        key={index}
+        color={data.status === 'invalid' ? 'error' : undefined}
+      >
+        <Table.Cell>{data.data.searchKeywords}</Table.Cell>
+        <Table.Cell>{data.data.username}</Table.Cell>
+        <Table.Cell>{data.data.context}</Table.Cell>
+      </Table.Row>
+    );
+  }, [])
 
   function removeInvalidCases() {
     setSearchCases(prev => prev.filter(item => item.status !== 'invalid'));
   }
 
   return (
-    <div className="mt-16 mb-24">
+    <div className="pt-16 pb-24 flex flex-col h-screen">
       <Button
         title="Upload New CSV"
         variant="text"
@@ -38,10 +45,10 @@ export function ReviewPage({}: ReviewPagePropsTypes) {
         iconLeading={<ArrowLeftIcon/>}
         onClick={() => navigate('/')}
       />
-      <Card>
+      <Card fillHeight>
         <Card.Header>
           <Card.Header.Title title='Review CSV File'/>
-          <Card.Header.Actions className="flex gap-3 shrink-0">
+          <Card.Header.Actions>
             {invalidSearchCount > 0 ? <Button
               title={`Delete ${invalidSearchCount} ${invalidSearchCount === 1 ? 'Error' : 'Errors'}`}
               color="warning"
@@ -57,8 +64,19 @@ export function ReviewPage({}: ReviewPagePropsTypes) {
           </Card.Header.Actions>
         </Card.Header>
         <Card.Body>
-          {tableData.length > 0 ? (
-            <Table data={tableData}/>
+          {searchCases.length > 0 ? (
+            <Table<SearchCaseType>
+              data={searchCases}
+              rowHeight={80}
+              rowRenderer={rowRenderer}
+              header={(
+                <Table.Row>
+                  <Table.HeaderCell value="Search Keywords"/>
+                  <Table.HeaderCell value="Username"/>
+                  <Table.HeaderCell value="Context"/>
+                </Table.Row>
+              )}
+            />
           ) : (
             <p>empty</p>
           )}
