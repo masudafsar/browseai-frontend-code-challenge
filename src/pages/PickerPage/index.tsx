@@ -23,7 +23,7 @@ export function PickerPage({}: PickerPagePropsTypes) {
     reader.onload = async function (event) {
       const rawText = event.target?.result;
       if (typeof rawText !== "string") return;
-      const lines = rawText.split('\n');
+      const lines = rawText.split('\n').map(line => line.replace('\r', ''));
       const cases: SearchCaseType[] = [];
 
       lines.forEach((line, lineIndex) => {
