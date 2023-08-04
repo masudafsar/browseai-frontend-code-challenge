@@ -20,7 +20,7 @@ export function ResultsPage({}: ResultsPagePropsTypes) {
   );
 
   return (
-    <div className="mt-16 mb-24">
+    <div className="pt-16 pb-24 flex flex-col h-screen">
       <Button
         title="Upload New CSV"
         variant="text"
@@ -29,7 +29,7 @@ export function ResultsPage({}: ResultsPagePropsTypes) {
         iconLeading={<ArrowLeftIcon/>}
         onClick={() => navigate('/')}
       />
-      <Card>
+      <Card fillHeight>
         <Card.Header>
           <Card.Header.Title title='Search Results'/>
         </Card.Header>

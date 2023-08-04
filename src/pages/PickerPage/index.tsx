@@ -48,7 +48,7 @@ export function PickerPage({}: PickerPagePropsTypes) {
   }, [setSearchCases]);
 
   return (
-    <div className="my-24">
+    <div className="py-24 flex flex-col h-screen">
       <Card>
         <Card.Header>
           <Card.Header.Icon icon={<GitHubIcon/>}/>

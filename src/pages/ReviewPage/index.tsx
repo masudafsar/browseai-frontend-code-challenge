@@ -29,7 +29,7 @@ export function ReviewPage({}: ReviewPagePropsTypes) {
   }
 
   return (
-    <div className="mt-16 mb-24">
+    <div className="pt-16 pb-24 flex flex-col h-screen">
       <Button
         title="Upload New CSV"
         variant="text"
@@ -38,7 +38,7 @@ export function ReviewPage({}: ReviewPagePropsTypes) {
         iconLeading={<ArrowLeftIcon/>}
         onClick={() => navigate('/')}
       />
-      <Card>
+      <Card fillHeight>
         <Card.Header>
           <Card.Header.Title title='Review CSV File'/>
           <Card.Header.Actions className="flex gap-3 shrink-0">
