@@ -1,8 +1,9 @@
 import {ChangeEvent, useCallback, useContext, useState} from "react";
+import {useNavigate} from "react-router-dom";
+
 import {GitHubIcon} from "../../icons";
 import {Card, FilePicker} from "../../components";
 import {AppContext} from "../../contexts";
-import {useNavigate} from "react-router-dom";
 import {rawTextToSearchCases} from "../../utils/searchCase";
 
 export interface PickerPagePropsTypes {
@@ -43,13 +44,12 @@ export function PickerPage({}: PickerPagePropsTypes) {
           />
         </Card.Header>
         <Card.Body>
-          <div className="p-6 pt-4">
-            <FilePicker
-              disabled={isLoading}
-              onChange={pickFileHandler}
-              accept=".csv"
-            />
-          </div>
+          <FilePicker
+            className="p-6 pt-4 h-full"
+            disabled={isLoading}
+            onChange={pickFileHandler}
+            accept=".csv"
+          />
         </Card.Body>
       </Card>
     </div>

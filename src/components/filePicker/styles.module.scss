@@ -19,10 +19,12 @@
 }
 
 .FilePicker_Picker {
+  @apply h-full;
   @apply flex;
   @apply flex-col;
   @apply gap-3;
   @apply items-center;
+  @apply justify-center;
   @apply p-6;
   @apply rounded-md;
   @apply border;

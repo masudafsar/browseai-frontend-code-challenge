@@ -1,4 +1,4 @@
-import {SearchCaseInputDataType, SearchCaseType} from "../types";
+import {type SearchCaseType} from "../types";
 
 export function rawTextToSearchCases(raw: string): Array<SearchCaseType> {
   const lines = raw.split('\n').map(line => line.replace('\r', ''));
