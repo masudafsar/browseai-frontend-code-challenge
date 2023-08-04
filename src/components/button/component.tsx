@@ -1,59 +1,60 @@
-import * as classNames from "classnames";
-import styles from './styles.module.scss';
 import {ButtonHTMLAttributes, ReactNode} from "react";
-import {ColorThemeType} from "../../types";
+import * as classNames from "classnames";
+import {type ColorThemeType, type SizeThemeType, type VariantThemeType} from "../../types";
+
+import styles from './styles.module.scss';
 
 export interface ButtonPropsType extends ButtonHTMLAttributes<HTMLButtonElement> {
   title: string;
   color?: ColorThemeType;
-  variant?: 'text' | 'outline' | 'fill';
-  size?: 'sm' | 'md' | 'lg';
+  variant?: VariantThemeType;
+  size?: SizeThemeType;
   iconLeading?: ReactNode;
   iconTrailing?: ReactNode;
 }
 
-export const Button = ({
-                         title,
-                         onClick,
-                         variant = 'fill',
-                         color = 'primary',
-                         size = 'md',
-                         iconLeading,
-                         iconTrailing,
-                         className,
-                         ...props
-                       }: ButtonPropsType) => {
-  const variantStyles = variant === 'text'
-    ? styles.VariantText
-    : variant === 'outline'
-      ? styles.VariantOutline
-      : variant === 'fill'
-        ? styles.VariantFill
-        : '';
+const colorStyles: { [key in ButtonPropsType['color']]: string } = {
+  primary: styles.ColorPrimary,
+  success: styles.ColorSuccess,
+  info: styles.ColorInfo,
+  warning: styles.ColorWarning,
+  error: styles.ColorError,
+}
 
-  const colorStyles = color === 'primary'
-    ? styles.ColorPrimary
-    : color === 'success'
-      ? styles.ColorSuccess
-      : color === 'info'
-        ? styles.ColorInfo
-        : color === 'warning'
-          ? styles.ColorWarning
-          : color === 'error'
-            ? styles.ColorError
-            : '';
+const variantStyles: { [key in ButtonPropsType['variant']]: string } = {
+  text: styles.VariantText,
+  outline: styles.VariantOutline,
+  fill: styles.VariantFill,
+}
 
-  const sizeStyles = size === 'sm'
-    ? styles.SizeSm
-    : size === 'md'
-      ? styles.SizeMd
-      : size === 'lg'
-        ? styles.SizeLg
-        : '';
+const sizeStyles: { [key in ButtonPropsType['size']]: string } = {
+  sm: styles.SizeSm,
+  md: styles.SizeMd,
+  lg: styles.SizeLg,
+}
 
+export const Button = (
+  {
+    title,
+    onClick,
+    variant = 'fill',
+    color = 'primary',
+    size = 'md',
+    iconLeading,
+    iconTrailing,
+    className,
+    ...props
+  }: ButtonPropsType
+) => {
   return (
     <button
-      className={classNames(styles.Button, variantStyles, colorStyles, sizeStyles, className)}
+      className={classNames(
+        styles.Button,
+        variantStyles[variant],
+        colorStyles[color],
+        sizeStyles[size],
+        className
+      )}
       onClick={onClick}
       {...props}
     >
