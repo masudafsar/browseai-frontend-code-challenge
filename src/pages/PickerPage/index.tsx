@@ -38,7 +38,7 @@ export function PickerPage({}: PickerPagePropsTypes) {
         };
         const searchCase: SearchCaseType = {
           data: {...data},
-          results: [],
+          count: 0,
           status: data.searchKeywords && !isDuplicate ? "idle" : "invalid",
         };
         cases.push(searchCase);

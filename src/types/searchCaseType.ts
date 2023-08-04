@@ -4,5 +4,5 @@ import {type SearchCaseInputDataType} from "./searchCaseInputDataType";
 export interface SearchCaseType {
   data: SearchCaseInputDataType;
   status: SearchCaseStatusType;
-  results: Array<unknown>;
+  count: number;
 }
