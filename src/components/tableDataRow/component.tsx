@@ -1,6 +1,6 @@
-import {PropsWithChildren} from "react";
-import * as classNames from "classnames";
-import {ColorThemeType} from "../../types";
+import {type PropsWithChildren} from "react";
+import classNames from "classnames";
+import {type ColorThemeType} from "../../types";
 
 import styles from './style.module.scss';
 

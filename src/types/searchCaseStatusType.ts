@@ -1,1 +1,1 @@
-export type SearchCaseStatusType = 'invalid' | 'error' | 'loading' | 'completed' | 'idle';
+export type SearchCaseStatusType = 'invalid' | 'error' | 'loading' | 'notFound' | 'found' | 'idle';

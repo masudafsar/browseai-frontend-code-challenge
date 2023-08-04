@@ -1,7 +1,7 @@
 import {forwardRef, InputHTMLAttributes} from "react";
 import {UploadCloudIcon} from "../../icons";
 import styles from './styles.module.scss';
-import * as classNames from "classnames";
+import classNames from "classnames";
 
 export interface FilePickerPropsType extends InputHTMLAttributes<HTMLInputElement> {
 }

@@ -10,11 +10,12 @@ export interface ResultsPagePropsTypes {
 }
 
 const resultBadgeColors: { [key in SearchCaseStatusType]: ColorThemeType } = {
-  invalid: 'warning',
-  idle: 'primary',
-  loading: 'primary',
-  completed: 'success',
+  invalid: 'error',
   error: 'error',
+  idle: 'primary',
+  loading: 'warning',
+  notFound: 'primary',
+  found: 'success',
 }
 
 export function ResultsPage({}: ResultsPagePropsTypes) {
@@ -22,6 +23,28 @@ export function ResultsPage({}: ResultsPagePropsTypes) {
   const navigate = useNavigate();
 
   const rowRenderer = useCallback<RowRendererType<SearchCaseType>>(function (data, index) {
+    let resultText = '';
+    switch (data.status) {
+      case "invalid":
+        resultText = 'INVALID';
+        break;
+      case "error":
+        resultText = 'ERROR';
+        break;
+      case "loading":
+        resultText = 'Loading...';
+        break;
+      case "notFound":
+        resultText = 'No repositories found';
+        break;
+      case "found":
+        resultText = `${data.results.length} ${data.results.length > 1 ? 'repositories' : 'repository'} found`;
+        break;
+      case "idle":
+        resultText = 'Queued';
+        break;
+    }
+
     return (
       <Table.Row
         key={index}
@@ -32,7 +55,7 @@ export function ResultsPage({}: ResultsPagePropsTypes) {
         <Table.Cell>{data.data.context}</Table.Cell>
         <Table.Cell>
           <Badge
-            title={data.status}
+            title={resultText}
             size='sm'
             variant='text'
             color={resultBadgeColors[data.status]}

@@ -1,5 +1,5 @@
 import {HTMLAttributes, ReactNode} from "react";
-import * as classNames from "classnames";
+import classNames from "classnames";
 import {type ColorThemeType, type SizeThemeType, type VariantThemeType} from "../../types";
 
 import styles from './styles.module.scss';

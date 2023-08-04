@@ -1,8 +1,9 @@
 import {PropsWithChildren} from "react";
+import classNames from "classnames";
 import {CardHeader} from "../cardHeader";
-import styles from './styles.module.scss'
 import {CardBody} from "../cardBody";
-import * as classNames from "classnames";
+
+import styles from './styles.module.scss'
 
 export interface CardPropsType {
   fillHeight?: boolean;
