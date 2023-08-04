@@ -13,7 +13,7 @@ export interface BadgePropsType extends HTMLAttributes<HTMLDivElement> {
   iconTrailing?: ReactNode;
 }
 
-const colorStyles: { [key in BadgePropsType['color']]: string } = {
+const colorStyles: { [key in ColorThemeType]: string } = {
   primary: styles.ColorPrimary,
   success: styles.ColorSuccess,
   info: styles.ColorInfo,
@@ -21,12 +21,12 @@ const colorStyles: { [key in BadgePropsType['color']]: string } = {
   error: styles.ColorError,
 }
 
-const variantStyles: { [key in BadgePropsType['variant']]: string } = {
+const variantStyles: { [key in Exclude<VariantThemeType, 'fill'>]: string } = {
   text: styles.VariantText,
   outline: styles.VariantOutline,
 }
 
-const sizeStyles: { [key in BadgePropsType['size']]: string } = {
+const sizeStyles: { [key in SizeThemeType]: string } = {
   sm: styles.SizeSm,
   md: styles.SizeMd,
   lg: styles.SizeLg,

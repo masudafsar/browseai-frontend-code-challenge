@@ -13,7 +13,7 @@ export interface ButtonPropsType extends ButtonHTMLAttributes<HTMLButtonElement>
   iconTrailing?: ReactNode;
 }
 
-const colorStyles: { [key in ButtonPropsType['color']]: string } = {
+const colorStyles: { [key in ColorThemeType]: string } = {
   primary: styles.ColorPrimary,
   success: styles.ColorSuccess,
   info: styles.ColorInfo,
@@ -21,13 +21,13 @@ const colorStyles: { [key in ButtonPropsType['color']]: string } = {
   error: styles.ColorError,
 }
 
-const variantStyles: { [key in ButtonPropsType['variant']]: string } = {
+const variantStyles: { [key in VariantThemeType]: string } = {
   text: styles.VariantText,
   outline: styles.VariantOutline,
   fill: styles.VariantFill,
 }
 
-const sizeStyles: { [key in ButtonPropsType['size']]: string } = {
+const sizeStyles: { [key in SizeThemeType]: string } = {
   sm: styles.SizeSm,
   md: styles.SizeMd,
   lg: styles.SizeLg,
