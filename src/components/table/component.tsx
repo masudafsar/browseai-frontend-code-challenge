@@ -1,19 +1,14 @@
-import {TableDataRowPropsType} from "../";
 import styles from './styles.module.scss';
-import {TableContextProvider} from "../../providers";
-import {ReactNode} from "react";
+import {TableContextProvider, TableContextProviderPropsType} from "../../providers";
 import {VirtualTable} from "./virtualTable";
 
-export interface TablePropsType {
-  header?: ReactNode;
-  footer?: ReactNode;
-  data: Array<TableDataRowPropsType>;
+export interface TablePropsType<T> extends TableContextProviderPropsType<T> {
 }
 
-export function Table({data, header, footer}: TablePropsType) {
+export function Table<T>({...props}: TablePropsType<T>) {
   return (
     <div className={styles.Table_Root}>
-      <TableContextProvider data={data} header={header} footer={footer}>
+      <TableContextProvider {...props}>
         <VirtualTable/>
       </TableContextProvider>
     </div>

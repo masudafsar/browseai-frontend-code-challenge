@@ -1,9 +1,10 @@
-import {Button, Card, Table, TableDataRowPropsType, TableHeaderColumn} from "../../components";
-import {useContext, useMemo} from "react";
-import {AppContext} from "../../contexts";
+import {Button, Card, Table, TableDataRow, TableHeaderColumn} from "../../components";
+import {useCallback, useContext, useMemo} from "react";
+import {AppContext, RowRendererType} from "../../contexts";
 import {ArrowLeftIcon} from "../../icons";
 import {useNavigate} from "react-router-dom";
 import {keyToText} from "../../utils/string";
+import {SearchCaseType} from "../../types";
 
 export interface ReviewPagePropsTypes {
 }
@@ -12,18 +13,20 @@ export function ReviewPage({}: ReviewPagePropsTypes) {
   const {searchCases, setSearchCases} = useContext(AppContext);
   const navigate = useNavigate();
 
-  const tableData = useMemo(
-    () => searchCases.map<TableDataRowPropsType>(item => ({
-      data: {...item.data},
-      color: item.status === "invalid" ? 'error' : undefined,
-    })),
-    [searchCases]
-  );
-
   const invalidSearchCount = useMemo(
     () => searchCases.filter(item => item.status === 'invalid').length,
     [searchCases]
   );
+
+  const rowRenderer = useCallback<RowRendererType<SearchCaseType>>(function (data, index) {
+    return (
+      <TableDataRow
+        key={index}
+        data={data.data}
+        color={data.status === 'invalid' ? 'error' : undefined}
+      />
+    );
+  }, [])
 
   function removeInvalidCases() {
     setSearchCases(prev => prev.filter(item => item.status !== 'invalid'));
@@ -58,12 +61,14 @@ export function ReviewPage({}: ReviewPagePropsTypes) {
           </Card.Header.Actions>
         </Card.Header>
         <Card.Body>
-          {tableData.length > 0 ? (
+          {searchCases.length > 0 ? (
             <Table
-              data={tableData}
+              data={searchCases}
+              rowHeight={80}
+              rowRenderer={rowRenderer}
               header={(
                 <tr>
-                  {Object.entries(tableData[0]?.data || {}).map(([key, _]) => (
+                  {Object.entries(searchCases[0]?.data || {}).map(([key, _]) => (
                     <TableHeaderColumn key={key} value={keyToText(key)}/>
                   ))}
                 </tr>

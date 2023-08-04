@@ -1,8 +1,10 @@
 import {Dispatch, ReactNode, SetStateAction} from "react";
-import {TableDataRowPropsType} from "../../components";
+import {RowRendererType} from "./rowRendererType";
 
-export interface TableContextType {
-  data: Array<TableDataRowPropsType>;
+export interface TableContextType<T> {
+  data: Array<T>;
+  rowRenderer: RowRendererType<T>;
+  rowHeight: number;
   top: number;
   setTop: Dispatch<SetStateAction<number>>;
   header?: ReactNode;

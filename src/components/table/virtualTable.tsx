@@ -2,12 +2,14 @@ import {useContext, useRef} from "react";
 import {FixedSizeList} from "react-window";
 import {TableContext} from "../../contexts";
 import AutoSizer from "react-virtualized-auto-sizer";
-import {TableDataRow} from "../tableDataRow";
 import {InnerVirtualTable} from "./innerVirtualTable";
 
-export function VirtualTable() {
+export interface VirtualTablePropsType {
+}
+
+export function VirtualTable({}: VirtualTablePropsType) {
   const listRef = useRef<FixedSizeList | null>();
-  const {data, setTop} = useContext(TableContext);
+  const {rowRenderer, data, setTop, rowHeight} = useContext(TableContext);
 
   return (
     <AutoSizer>
@@ -24,11 +26,10 @@ export function VirtualTable() {
             setTop(style?.top || 0);
           }}
           itemCount={data.length}
-          itemSize={80}
+          itemSize={rowHeight}
+          itemData={data}
         >
-          {({index}) => {
-            return <TableDataRow key={index} data={data[index].data} color={data[index].color}/>
-          }}
+          {({index, data}) => rowRenderer(data[index], index)}
         </FixedSizeList>
       )}
     </AutoSizer>
