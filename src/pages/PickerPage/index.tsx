@@ -25,8 +25,11 @@ export function PickerPage({}: PickerPagePropsTypes) {
       if (typeof rawText !== "string") return;
       const lines = rawText.split('\n').map(line => line.replace('\r', ''));
       const cases: SearchCaseType[] = [];
+      const uniqueLines = new Set<string>();
 
       lines.forEach((line, lineIndex) => {
+        const isDuplicate = uniqueLines.has(line);
+        if (!isDuplicate) uniqueLines.add(line);
         const [searchKeywords, username, context] = line.split(',');
         const data: SearchCaseInputDataType = {
           searchKeywords,
@@ -36,7 +39,7 @@ export function PickerPage({}: PickerPagePropsTypes) {
         const searchCase: SearchCaseType = {
           data: {...data},
           results: [],
-          status: data.searchKeywords && lines.slice(0, lineIndex + 1).filter(item => item === line).length === 1 ? "idle" : "invalid",
+          status: data.searchKeywords && !isDuplicate ? "idle" : "invalid",
         };
         cases.push(searchCase);
       });
