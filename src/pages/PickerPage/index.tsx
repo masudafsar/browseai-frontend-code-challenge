@@ -41,10 +41,10 @@ export function PickerPage({}: PickerPagePropsTypes) {
         cases.push(searchCase);
       });
       setSearchCases(cases);
+      setIsLoading(false);
+      navigate('/review');
     }
     reader.readAsText(event.target.files?.[0]);
-    setIsLoading(false);
-    navigate('/review');
   }, [setSearchCases]);
 
   return (
