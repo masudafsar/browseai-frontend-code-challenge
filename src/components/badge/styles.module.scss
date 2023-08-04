@@ -1,0 +1,73 @@
+.Badge {
+  @apply inline-flex;
+  @apply items-center;
+  @apply gap-2;
+  @apply rounded-full;
+  @apply text-sm;
+  @apply font-medium;
+}
+
+.VariantText {
+  @apply text-[var(--color-main)];
+  @apply stroke-[var(--color-main)];
+  @apply bg-[var(--color-bg)];
+}
+
+.VariantOutline {
+  @apply shadow-sm;
+  @apply border;
+  @apply border-solid;
+
+  @apply bg-transparent;
+  @apply text-[var(--color-main)];
+  @apply stroke-[var(--color-main)];
+  @apply border-[var(--color-border)];
+}
+
+.ColorPrimary {
+  --color-main: theme('colors.primary.700');
+  --color-bg: theme('colors.primary.50');
+  --color-border: theme('colors.primary.700');
+}
+
+.ColorSuccess {
+  --color-main: theme('colors.success.700');
+  --color-bg: theme('colors.success.50');
+  --color-border: theme('colors.success.600');
+}
+
+.ColorInfo {
+  --color-main: theme('colors.info.700');
+  --color-bg: theme('colors.info.50');
+  --color-border: theme('colors.info.600');
+}
+
+.ColorWarning {
+  --color-main: theme('colors.warning.700');
+  --color-bg: theme('colors.warning.50');
+  --color-border: theme('colors.warning.600');
+}
+
+.ColorError {
+  --color-main: theme('colors.error.700');
+  --color-bg: theme('colors.error.50');
+  --color-border: theme('colors.error.600');
+}
+
+.SizeSm {
+  @apply text-sm;
+  @apply px-2;
+  @apply py-0.5;
+}
+
+.SizeMd {
+  @apply text-md;
+  @apply px-2.5;
+  @apply py-0.5;
+}
+
+.SizeLg {
+  @apply text-md;
+  @apply px-3;
+  @apply py-1;
+}

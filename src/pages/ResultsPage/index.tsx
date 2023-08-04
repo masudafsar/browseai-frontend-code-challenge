@@ -1,7 +1,7 @@
 import {useCallback, useContext} from "react";
 import {useNavigate} from "react-router-dom";
 
-import {Button, Card, EmptyList, Table} from "../../components";
+import {Badge, Button, Card, EmptyList, Table} from "../../components";
 import {ArrowLeftIcon} from "../../icons";
 import {AppContext, RowRendererType} from "../../contexts";
 import {type SearchCaseType} from "../../types";
@@ -22,7 +22,9 @@ export function ResultsPage({}: ResultsPagePropsTypes) {
         <Table.Cell>{data.data.searchKeywords}</Table.Cell>
         <Table.Cell>{data.data.username}</Table.Cell>
         <Table.Cell>{data.data.context}</Table.Cell>
-        <Table.Cell>{data.status}</Table.Cell>
+        <Table.Cell>
+          <Badge title={data.status} size='sm' variant='text'/>
+        </Table.Cell>
       </Table.Row>
     );
   }, []);

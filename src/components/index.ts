@@ -4,6 +4,7 @@ export * from './tableDataRow';
 export * from './tableDataCell';
 
 export * from './button';
+export * from './badge';
 
 export * from './card';
 export * from './cardHeader';
