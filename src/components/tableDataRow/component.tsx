@@ -8,21 +8,18 @@ export interface TableDataRowPropsType {
   color?: ColorThemeType;
 }
 
-export function TableDataRow({children, color}: PropsWithChildren<TableDataRowPropsType>) {
-  const colorStyles = color === 'primary'
-    ? styles.ColorPrimary
-    : color === 'success'
-      ? styles.ColorSuccess
-      : color === 'info'
-        ? styles.ColorInfo
-        : color === 'warning'
-          ? styles.ColorWarning
-          : color === 'error'
-            ? styles.ColorError
-            : '';
+const colorStyles: { [key in ColorThemeType]: string } = {
+  primary: styles.ColorPrimary,
+  success: styles.ColorSuccess,
+  info: styles.ColorInfo,
+  warning: styles.ColorWarning,
+  error: styles.ColorError,
+}
 
+
+export function TableDataRow({children, color}: PropsWithChildren<TableDataRowPropsType>) {
   return (
-    <tr className={classNames(styles.TableDataRow, colorStyles)}>
+    <tr className={classNames(styles.TableDataRow, colorStyles[color])}>
       {children}
     </tr>
   );
