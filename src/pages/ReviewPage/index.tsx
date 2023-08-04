@@ -1,8 +1,9 @@
-import {Button, Card, Table, TableDataRowPropsType} from "../../components";
+import {Button, Card, Table, TableDataRowPropsType, TableHeaderColumn} from "../../components";
 import {useContext, useMemo} from "react";
 import {AppContext} from "../../contexts";
 import {ArrowLeftIcon} from "../../icons";
 import {useNavigate} from "react-router-dom";
+import {keyToText} from "../../utils/string";
 
 export interface ReviewPagePropsTypes {
 }
@@ -58,7 +59,16 @@ export function ReviewPage({}: ReviewPagePropsTypes) {
         </Card.Header>
         <Card.Body>
           {tableData.length > 0 ? (
-            <Table data={tableData}/>
+            <Table
+              data={tableData}
+              header={(
+                <tr>
+                  {Object.entries(tableData[0]?.data || {}).map(([key, _]) => (
+                    <TableHeaderColumn key={key} value={keyToText(key)}/>
+                  ))}
+                </tr>
+              )}
+            />
           ) : (
             <p>empty</p>
           )}

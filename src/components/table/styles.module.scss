@@ -4,6 +4,7 @@
 
 .Table_Table {
   @apply min-w-full;
+  @apply absolute;
   @apply bg-white;
   @apply border-t;
   @apply border-solid;
@@ -15,6 +16,10 @@
 .Table_TableHeader {
   @apply divide-y;
   @apply divide-gray-200;
+}
+
+.Table_TableFooter {
+  @extend .Table_TableHeader;
 }
 
 .Table_TableBody {
