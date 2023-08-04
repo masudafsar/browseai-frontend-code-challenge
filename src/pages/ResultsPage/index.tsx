@@ -5,6 +5,7 @@ import {Badge, Button, Card, EmptyList, Table} from "../../components";
 import {ArrowLeftIcon} from "../../icons";
 import {AppContext, type RowRendererType} from "../../contexts";
 import {type ColorThemeType, type SearchCaseStatusType, type SearchCaseType} from "../../types";
+import {ArrowRightIcon} from "../../icons/arrowRightIcon";
 
 export interface ResultsPagePropsTypes {
 }
@@ -59,6 +60,7 @@ export function ResultsPage({}: ResultsPagePropsTypes) {
             size='sm'
             variant='text'
             color={resultBadgeColors[data.status]}
+            iconTrailing={data.status === 'found' && <ArrowRightIcon/>}
           />
         </Table.Cell>
       </Table.Row>
