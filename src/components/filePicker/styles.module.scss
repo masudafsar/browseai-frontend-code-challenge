@@ -1,5 +1,9 @@
 .FilePicker_Root {
   &.FilePicker_Disabled {
+    .FilePicker_Picker {
+      @apply cursor-not-allowed	;
+    }
+
     .FilePicker_UploadIcon {
       @apply stroke-gray-300;
     }
