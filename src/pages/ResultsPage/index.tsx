@@ -80,6 +80,7 @@ export function ResultsPage({}: ResultsPagePropsTypes) {
       <Card fillHeight>
         <Card.Header>
           <Card.Header.Title title='Search Results'/>
+          <Card.Header.TitleAlt title='Finish estimated time: 2 hours and 31 minutes'/>
         </Card.Header>
         <Card.Body>
           {searchCases.length > 0 ? (
