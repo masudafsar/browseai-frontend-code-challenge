@@ -3,10 +3,18 @@ import {useNavigate} from "react-router-dom";
 
 import {Badge, Button, Card, EmptyList, Table} from "../../components";
 import {ArrowLeftIcon} from "../../icons";
-import {AppContext, RowRendererType} from "../../contexts";
-import {type SearchCaseType} from "../../types";
+import {AppContext, type RowRendererType} from "../../contexts";
+import {type ColorThemeType, type SearchCaseStatusType, type SearchCaseType} from "../../types";
 
 export interface ResultsPagePropsTypes {
+}
+
+const resultBadgeColors: { [key in SearchCaseStatusType]: ColorThemeType } = {
+  invalid: 'warning',
+  idle: 'primary',
+  loading: 'primary',
+  completed: 'success',
+  error: 'error',
 }
 
 export function ResultsPage({}: ResultsPagePropsTypes) {
@@ -23,7 +31,12 @@ export function ResultsPage({}: ResultsPagePropsTypes) {
         <Table.Cell>{data.data.username}</Table.Cell>
         <Table.Cell>{data.data.context}</Table.Cell>
         <Table.Cell>
-          <Badge title={data.status} size='sm' variant='text'/>
+          <Badge
+            title={data.status}
+            size='sm'
+            variant='text'
+            color={resultBadgeColors[data.status]}
+          />
         </Table.Cell>
       </Table.Row>
     );
