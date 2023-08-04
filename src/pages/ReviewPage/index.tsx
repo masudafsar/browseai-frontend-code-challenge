@@ -41,7 +41,7 @@ export function ReviewPage({}: ReviewPagePropsTypes) {
       <Card fillHeight>
         <Card.Header>
           <Card.Header.Title title='Review CSV File'/>
-          <Card.Header.Actions className="flex gap-3 shrink-0">
+          <Card.Header.Actions>
             {invalidSearchCount > 0 ? <Button
               title={`Delete ${invalidSearchCount} ${invalidSearchCount === 1 ? 'Error' : 'Errors'}`}
               color="warning"
