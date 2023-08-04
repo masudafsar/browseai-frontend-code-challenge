@@ -1,7 +1,7 @@
 import {ChangeEvent, useCallback, useContext, useState} from "react";
 import {GitHubIcon} from "../../icons";
 import {Card, FilePicker} from "../../components";
-import {AppContext} from "../../contexts/appContext";
+import {AppContext} from "../../contexts";
 import {SearchCaseInputDataType, SearchCaseType} from "../../types";
 import {useNavigate} from "react-router-dom";
 

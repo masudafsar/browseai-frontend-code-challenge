@@ -1,6 +1,6 @@
 import {Button, Card, Table, TableDataRowPropsType} from "../../components";
 import {useContext, useMemo} from "react";
-import {AppContext} from "../../contexts/appContext";
+import {AppContext} from "../../contexts";
 import {ArrowLeftIcon} from "../../icons";
 import {useNavigate} from "react-router-dom";
 

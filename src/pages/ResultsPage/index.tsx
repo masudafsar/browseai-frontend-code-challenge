@@ -1,7 +1,7 @@
 import {Button, Card, Table, TableDataRowPropsType} from "../../components";
 import {ArrowLeftIcon} from "../../icons";
 import {useContext, useMemo} from "react";
-import {AppContext} from "../../contexts/appContext";
+import {AppContext} from "../../contexts";
 import {useNavigate} from "react-router-dom";
 
 export interface ResultsPagePropsTypes {
