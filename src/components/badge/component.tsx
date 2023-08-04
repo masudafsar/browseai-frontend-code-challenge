@@ -1,13 +1,13 @@
-import {ButtonHTMLAttributes, ReactNode} from "react";
+import {HTMLAttributes, ReactNode} from "react";
 import classNames from "classnames";
 import {type ColorThemeType, type SizeThemeType, type VariantThemeType} from "../../types";
 
 import styles from './styles.module.scss';
 
-export interface ButtonPropsType extends ButtonHTMLAttributes<HTMLButtonElement> {
+export interface BadgePropsType extends HTMLAttributes<HTMLDivElement> {
   title: string;
   color?: ColorThemeType;
-  variant?: VariantThemeType;
+  variant?: Exclude<VariantThemeType, 'fill'>;
   size?: SizeThemeType;
   iconLeading?: ReactNode;
   iconTrailing?: ReactNode;
@@ -21,10 +21,9 @@ const colorStyles: { [key in ColorThemeType]: string } = {
   error: styles.ColorError,
 }
 
-const variantStyles: { [key in VariantThemeType]: string } = {
+const variantStyles: { [key in Exclude<VariantThemeType, 'fill'>]: string } = {
   text: styles.VariantText,
   outline: styles.VariantOutline,
-  fill: styles.VariantFill,
 }
 
 const sizeStyles: { [key in SizeThemeType]: string } = {
@@ -33,34 +32,32 @@ const sizeStyles: { [key in SizeThemeType]: string } = {
   lg: styles.SizeLg,
 }
 
-export const Button = (
+export const Badge = (
   {
     title,
-    onClick,
-    variant = 'fill',
+    variant = 'text',
     color = 'primary',
     size = 'md',
     iconLeading,
     iconTrailing,
     className,
     ...props
-  }: ButtonPropsType
+  }: BadgePropsType
 ) => {
   return (
-    <button
+    <div
       className={classNames(
-        styles.Button,
+        styles.Badge,
         variantStyles[variant],
         colorStyles[color],
         sizeStyles[size],
         className
       )}
-      onClick={onClick}
       {...props}
     >
       {iconLeading}
       {title}
       {iconTrailing}
-    </button>
+    </div>
   );
 };

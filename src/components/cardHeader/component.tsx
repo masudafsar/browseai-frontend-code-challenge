@@ -3,6 +3,7 @@ import styles from './styles.module.scss';
 import {CardHeaderIcon} from "../cardHeaderIcon";
 import {CardHeaderTitle} from "../cardHeaderTitle";
 import {CardHeaderActions} from "../cardHeaderActions";
+import {CardHeaderTitleAlt} from "../cardHeaderTitleAlt";
 
 export interface CardHeaderPropsType {
 }
@@ -17,4 +18,5 @@ export function CardHeader({children}: PropsWithChildren<CardHeaderPropsType>) {
 
 CardHeader.Icon = CardHeaderIcon;
 CardHeader.Title = CardHeaderTitle;
+CardHeader.TitleAlt = CardHeaderTitleAlt;
 CardHeader.Actions = CardHeaderActions;

@@ -30,7 +30,7 @@ export function ReviewPage({}: ReviewPagePropsTypes) {
         <Table.Cell>{data.data.context}</Table.Cell>
       </Table.Row>
     );
-  }, [])
+  }, []);
 
   function removeInvalidCases() {
     setSearchCases(prev => prev.filter(item => item.status !== 'invalid'));
@@ -61,6 +61,7 @@ export function ReviewPage({}: ReviewPagePropsTypes) {
               color="primary"
               disabled={searchCases.length === 0 || invalidSearchCount !== 0}
               variant="fill"
+              onClick={() => navigate('/result')}
             />
           </Card.Header.Actions>
         </Card.Header>
