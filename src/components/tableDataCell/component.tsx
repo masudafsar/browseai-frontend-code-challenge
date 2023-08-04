@@ -7,7 +7,10 @@ export interface TableDataCellPropsType {
 
 export function TableDataCell({children}: PropsWithChildren<TableDataCellPropsType>) {
   return (
-    <td className={styles.TableDataColumn}>
+    <td
+      scope='col'
+      className={styles.TableDataColumn}
+    >
       {children}
     </td>
   );

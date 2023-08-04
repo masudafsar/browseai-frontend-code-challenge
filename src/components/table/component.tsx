@@ -3,7 +3,7 @@ import {TableContextProvider, TableContextProviderPropsType} from "../../provide
 import {VirtualTable} from "./virtualTable";
 import {TableDataRow} from "../tableDataRow";
 import {TableDataCell} from "../tableDataCell";
-import {TableHeaderColumn} from "../tableHeaderColumn";
+import {TableHeaderCell} from "../tableHeaderColumn";
 
 export interface TablePropsType<T> extends TableContextProviderPropsType<T> {
 }
@@ -20,4 +20,4 @@ export function Table<T>({...props}: TablePropsType<T>) {
 
 Table.Row = TableDataRow;
 Table.Cell = TableDataCell;
-Table.HeaderColumn = TableHeaderColumn;
+Table.HeaderCell = TableHeaderCell;

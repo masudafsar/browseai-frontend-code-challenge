@@ -1,10 +1,10 @@
-import {Button, Card, Table, TableDataRow, TableHeaderColumn} from "../../components";
 import {useCallback, useContext, useMemo} from "react";
-import {AppContext, RowRendererType} from "../../contexts";
-import {ArrowLeftIcon} from "../../icons";
 import {useNavigate} from "react-router-dom";
-import {keyToText} from "../../utils/string";
-import {SearchCaseType} from "../../types";
+
+import {Button, Card, Table} from "../../components";
+import {AppContext, type RowRendererType} from "../../contexts";
+import {ArrowLeftIcon} from "../../icons";
+import {type SearchCaseType} from "../../types";
 
 export interface ReviewPagePropsTypes {
 }
@@ -70,11 +70,11 @@ export function ReviewPage({}: ReviewPagePropsTypes) {
               rowHeight={80}
               rowRenderer={rowRenderer}
               header={(
-                <tr>
-                  {Object.entries(searchCases[0]?.data || {}).map(([key, _]) => (
-                    <TableHeaderColumn key={key} value={keyToText(key)}/>
-                  ))}
-                </tr>
+                <Table.Row>
+                  <Table.HeaderCell value="Search Keywords"/>
+                  <Table.HeaderCell value="Username"/>
+                  <Table.HeaderCell value="Context"/>
+                </Table.Row>
               )}
             />
           ) : (

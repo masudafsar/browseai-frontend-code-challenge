@@ -15,15 +15,15 @@ export const InnerVirtualTable = forwardRef<HTMLDivElement, HTMLProps<HTMLDivEle
     return (
       <div ref={ref} {...props} data-testid='inner-virtual-table'>
         <table className={styles.Table_Table} style={{top}}>
-          <thead className={styles.Table_TableHeader}>
+          {header ? <thead className={styles.Table_TableHeader}>
           {header}
-          </thead>
+          </thead> : undefined}
           <tbody className={styles.Table_TableBody}>
           {children}
           </tbody>
-          <tfoot className={styles.Table_TableFooter}>
+          {footer ? <tfoot className={styles.Table_TableFooter}>
           {footer}
-          </tfoot>
+          </tfoot> : undefined}
         </table>
       </div>
     );
