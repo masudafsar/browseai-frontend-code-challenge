@@ -19,7 +19,7 @@ const colorStyles: { [key in ColorThemeType]: string } = {
 
 export function TableDataRow({children, color}: PropsWithChildren<TableDataRowPropsType>) {
   return (
-    <tr className={classNames(styles.TableDataRow, colorStyles[color])}>
+    <tr className={classNames(styles.TableDataRow, color && colorStyles[color])}>
       {children}
     </tr>
   );
