@@ -62,7 +62,7 @@ export function ReviewPage({}: ReviewPagePropsTypes) {
         </Card.Header>
         <Card.Body>
           {searchCases.length > 0 ? (
-            <Table
+            <Table<SearchCaseType>
               data={searchCases}
               rowHeight={80}
               rowRenderer={rowRenderer}
