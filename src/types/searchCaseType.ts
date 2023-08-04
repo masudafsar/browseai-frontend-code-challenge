@@ -1,10 +1,5 @@
-export interface SearchCaseInputDataType extends Record<string, string> {
-  searchKeywords: string;
-  username: string;
-  context: string;
-}
-
-export type SearchCaseStatusType = 'invalid' | 'error' | 'loading' | 'completed' | 'idle';
+import {type SearchCaseStatusType} from "./searchCaseStatusType";
+import {type SearchCaseInputDataType} from "./searchCaseInputDataType";
 
 export interface SearchCaseType {
   data: SearchCaseInputDataType;
