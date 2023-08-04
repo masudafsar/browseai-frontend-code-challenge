@@ -1,14 +1,14 @@
-import styles from './style.module.scss';
-import {TableDataColumn} from "../tableDataColumn";
-import {ColorThemeType} from "../../types";
+import {PropsWithChildren} from "react";
 import * as classNames from "classnames";
+import {ColorThemeType} from "../../types";
+
+import styles from './style.module.scss';
 
 export interface TableDataRowPropsType {
   color?: ColorThemeType;
-  data: Record<string, string>;
 }
 
-export function TableDataRow({data, color}: TableDataRowPropsType) {
+export function TableDataRow({children, color}: PropsWithChildren<TableDataRowPropsType>) {
   const colorStyles = color === 'primary'
     ? styles.ColorPrimary
     : color === 'success'
@@ -23,9 +23,7 @@ export function TableDataRow({data, color}: TableDataRowPropsType) {
 
   return (
     <tr className={classNames(styles.TableDataRow, colorStyles)}>
-      {Object.entries(data).map(([key, value]) => (
-        <TableDataColumn key={key} value={value}/>
-      ))}
+      {children}
     </tr>
   );
 }

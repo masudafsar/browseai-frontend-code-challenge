@@ -20,11 +20,14 @@ export function ReviewPage({}: ReviewPagePropsTypes) {
 
   const rowRenderer = useCallback<RowRendererType<SearchCaseType>>(function (data, index) {
     return (
-      <TableDataRow
+      <Table.Row
         key={index}
-        data={data.data}
         color={data.status === 'invalid' ? 'error' : undefined}
-      />
+      >
+        <Table.Cell>{data.data.searchKeywords}</Table.Cell>
+        <Table.Cell>{data.data.username}</Table.Cell>
+        <Table.Cell>{data.data.context}</Table.Cell>
+      </Table.Row>
     );
   }, [])
 

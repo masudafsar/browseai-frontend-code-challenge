@@ -1,6 +1,9 @@
 import styles from './styles.module.scss';
 import {TableContextProvider, TableContextProviderPropsType} from "../../providers";
 import {VirtualTable} from "./virtualTable";
+import {TableDataRow} from "../tableDataRow";
+import {TableDataCell} from "../tableDataCell";
+import {TableHeaderColumn} from "../tableHeaderColumn";
 
 export interface TablePropsType<T> extends TableContextProviderPropsType<T> {
 }
@@ -14,3 +17,7 @@ export function Table<T>({...props}: TablePropsType<T>) {
     </div>
   );
 }
+
+Table.Row = TableDataRow;
+Table.Cell = TableDataCell;
+Table.HeaderColumn = TableHeaderColumn;
