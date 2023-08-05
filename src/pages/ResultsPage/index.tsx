@@ -1,11 +1,12 @@
-import {useCallback, useContext} from "react";
+import {useContext, useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
-
+import {useQuery, useQueryClient} from "@tanstack/react-query";
 import {Badge, Button, Card, EmptyList, Table} from "../../components";
 import {ArrowLeftIcon} from "../../icons";
-import {AppContext, type RowRendererType} from "../../contexts";
+import {AppContext, RowRendererType} from "../../contexts";
 import {type ColorThemeType, type SearchCaseStatusType, type SearchCaseType} from "../../types";
 import {ArrowRightIcon} from "../../icons/arrowRightIcon";
+import {search} from "../../services";
 
 export interface ResultsPagePropsTypes {
 }
@@ -19,32 +20,70 @@ const resultBadgeColors: { [key in SearchCaseStatusType]: ColorThemeType } = {
   found: 'success',
 }
 
-export function ResultsPage({}: ResultsPagePropsTypes) {
-  const {searchCases} = useContext(AppContext);
-  const navigate = useNavigate();
+const resultTexts: { [key in SearchCaseStatusType]: string } = {
+  invalid: '',
+  error: 'ERROR',
+  idle: 'Queued',
+  loading: 'Loading...',
+  notFound: 'No repositories found',
+  found: 'N repositories found',
+}
 
-  const rowRenderer = useCallback<RowRendererType<SearchCaseType>>(function (data, index) {
-    let resultText = '';
-    switch (data.status) {
-      case "invalid":
-        resultText = 'INVALID';
-        break;
-      case "error":
-        resultText = 'ERROR';
-        break;
-      case "loading":
-        resultText = 'Loading...';
-        break;
-      case "notFound":
-        resultText = 'No repositories found';
-        break;
-      case "found":
-        resultText = `${data.results.length} ${data.results.length > 1 ? 'repositories' : 'repository'} found`;
-        break;
-      case "idle":
-        resultText = 'Queued';
-        break;
+export function ResultsPage({}: ResultsPagePropsTypes) {
+  const navigate = useNavigate();
+  const queryClient = useQueryClient();
+  const {searchCases, setSearchCases} = useContext(AppContext);
+  const [currentSearchCase, setCurrentSearchCase] = useState<number>(0);
+
+  const searchQuery = useQuery(
+    [...(searchCases[currentSearchCase] ? [
+      searchCases[currentSearchCase].data.searchKeywords,
+      searchCases[currentSearchCase].data.username,
+      searchCases[currentSearchCase].data.context,
+    ] : [])],
+    () => search(searchCases[currentSearchCase].data),
+    {
+      staleTime: 0,
+      enabled: Boolean(searchCases[currentSearchCase]),
+    },
+  );
+
+  useEffect(() => {
+    queryClient.clear();
+  }, []);
+
+  useEffect(() => {
+    const searchCase = searchCases[currentSearchCase];
+    if (!searchCase) return;
+    if (searchQuery.isLoading || searchQuery.isFetching) {
+      searchCase.status = 'loading';
+    } else if (searchQuery.isSuccess) {
+      searchCase.count = searchQuery.data?.data?.total_count || 0;
+      searchCase.status = searchCase.count > 0 ? 'found' : "notFound";
+    } else if (searchQuery.isError) {
+      searchCase.status = 'error';
+    } else {
+      searchCase.status = 'idle';
     }
+    setSearchCases(prevState => {
+      const next = [...prevState];
+      next[currentSearchCase] = {...searchCase};
+      return next;
+    });
+  }, [searchQuery.status, setSearchCases]);
+
+  useEffect(() => {
+    const searchCase = searchCases[currentSearchCase];
+    if (!searchCase) return;
+
+    if (searchCase.status === "found" || searchCase.status === "notFound") {
+      setCurrentSearchCase(prevState => prevState + 1);
+    }
+  }, [currentSearchCase, searchCases]);
+
+  const rowRenderer: RowRendererType<SearchCaseType> = function (data, index) {
+    let resultText = resultTexts[data.status];
+    if (data.status === 'found') resultText = `${data.count} ${data.count > 1 ? 'repositories' : 'repository'} found`;
 
     return (
       <Table.Row
@@ -55,17 +94,17 @@ export function ResultsPage({}: ResultsPagePropsTypes) {
         <Table.Cell>{data.data.username}</Table.Cell>
         <Table.Cell>{data.data.context}</Table.Cell>
         <Table.Cell>
-          <Badge
+          {resultText ? <Badge
             title={resultText}
             size='sm'
             variant='text'
             color={resultBadgeColors[data.status]}
             iconTrailing={data.status === 'found' && <ArrowRightIcon/>}
-          />
+          /> : undefined}
         </Table.Cell>
       </Table.Row>
     );
-  }, []);
+  };
 
   return (
     <div className="pt-16 pb-24 flex flex-col h-screen">
@@ -103,5 +142,5 @@ export function ResultsPage({}: ResultsPagePropsTypes) {
         </Card.Body>
       </Card>
     </div>
-  )
+  );
 }
