@@ -1,9 +1,10 @@
 import {ChangeEvent, useCallback, useContext, useState} from "react";
+import {useNavigate} from "react-router-dom";
+
 import {GitHubIcon} from "../../icons";
 import {Card, FilePicker} from "../../components";
 import {AppContext} from "../../contexts";
-import {SearchCaseInputDataType, SearchCaseType} from "../../types";
-import {useNavigate} from "react-router-dom";
+import {rawTextToSearchCases} from "../../utils/searchCase";
 
 export interface PickerPagePropsTypes {
 }
@@ -13,39 +14,24 @@ export function PickerPage({}: PickerPagePropsTypes) {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const navigate = useNavigate();
 
-  const pickFileHandler = useCallback(async function (event: ChangeEvent<HTMLInputElement>) {
-    if (!event.target.files || event.target.files.length === 0) return;
-    const reader = new FileReader();
-    reader.onloadstart = async function () {
-      setIsLoading(true);
-      setSearchCases([]);
-    }
-    reader.onload = async function (event) {
-      const rawText = event.target?.result;
-      if (typeof rawText !== "string") return;
-      const lines = rawText.split('\n');
-      const cases: SearchCaseType[] = [];
+  const pickFileHandler = useCallback(function (event: ChangeEvent<HTMLInputElement>) {
+    const file = event.target.files?.[0];
+    if (!file) return;
 
-      lines.forEach((line, lineIndex) => {
-        const [searchKeywords, username, context] = line.split(',');
-        const data: SearchCaseInputDataType = {
-          searchKeywords,
-          username,
-          context,
-        };
-        const searchCase: SearchCaseType = {
-          data: {...data},
-          results: [],
-          status: data.searchKeywords && lines.slice(0, lineIndex + 1).filter(item => item === line).length === 1 ? "idle" : "invalid",
-        };
-        cases.push(searchCase);
-      });
-      setSearchCases(cases);
+    const reader = new FileReader();
+    reader.onload = function (event) {
+      const rawText = event.target?.result;
+
+      setSearchCases(typeof rawText === "string" ? rawTextToSearchCases(rawText) : []);
+
       setIsLoading(false);
       navigate('/review');
     }
-    reader.readAsText(event.target.files?.[0]);
-  }, [setSearchCases]);
+
+    setIsLoading(true);
+    setSearchCases([]);
+    reader.readAsText(file);
+  }, [setSearchCases, setIsLoading]);
 
   return (
     <div className="py-24 flex flex-col h-screen">
@@ -58,13 +44,12 @@ export function PickerPage({}: PickerPagePropsTypes) {
           />
         </Card.Header>
         <Card.Body>
-          <div className="p-6 pt-4">
-            <FilePicker
-              disabled={isLoading}
-              onChange={pickFileHandler}
-              accept=".csv"
-            />
-          </div>
+          <FilePicker
+            className="p-6 pt-4 h-full"
+            disabled={isLoading}
+            onChange={pickFileHandler}
+            accept=".csv"
+          />
         </Card.Body>
       </Card>
     </div>

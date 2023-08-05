@@ -1,55 +1,29 @@
-import router from "./router";
 import {RouterProvider} from "react-router-dom";
+import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
+import {ReactQueryDevtools} from "@tanstack/react-query-devtools";
+import router from "./router";
 import {AppContextProvider} from "./providers";
 
-function App() {
-  // const octokit = new Octokit({auth: "your_personal_access_tokens"});
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      cacheTime: 24 * 60 * 60 * 1000,
+      staleTime: 1,
+      refetchInterval: false,
+      refetchOnWindowFocus: false,
+    }
+  }
+})
 
+export function App() {
   return (
     <AppContextProvider>
-      <div className="container">
-        <RouterProvider router={router}/>
-        {/*{currentPage === "PickerPage" && (
-          <PickerPage setSelectedFile={event => setSelectedFile(event.target.files?.[0])}/>)}
-        {currentPage === "ReviewPage" && reviewData && (
-          <>
-            <ReviewPage data={reviewData.map<TableDataRowPropsType>(item => ({data: item}))}/>
-            <Table
-              data={reviewData}
-              title="Review"
-              buttons={
-                <>
-                  <Button title="Delete rows with error"/>
-                  <Button
-                    title="Proceed"
-                    onClick={() => {
-                      reviewData.forEach((row) => {
-                        octokit.rest.search
-                          .repos({q: encodeURIComponent(row.searchKeywords)})
-                          .then(({data: {total_count}}) => {
-                            const result =
-                              total_count > 0
-                                ? total_count + " repositories found"
-                                : "No repositories found";
-                            setResultData((prevResultData) => [
-                              ...(prevResultData ?? []),
-                              {...row, searchResults: result}
-                            ]);
-                          });
-                      });
-                    }}
-                  />
-                </>
-              }
-            />
-          </>
-        )}
-        {currentPage === "ResultsPage" && (
-          <ResultsPage/>
-        )}*/}
-      </div>
+      <QueryClientProvider client={queryClient}>
+        <div className="container">
+          <RouterProvider router={router}/>
+        </div>
+        <ReactQueryDevtools initialIsOpen={false}/>
+      </QueryClientProvider>
     </AppContextProvider>
   );
 }
-
-export default App;

@@ -6,8 +6,8 @@ import classNames from "classnames";
 export interface FilePickerPropsType extends InputHTMLAttributes<HTMLInputElement> {
 }
 
-export const FilePicker = forwardRef<HTMLInputElement, FilePickerPropsType>((props, ref) => (
-  <div className={classNames(styles.FilePicker_Root, props.disabled && styles.FilePicker_Disabled)}>
+export const FilePicker = forwardRef<HTMLInputElement, FilePickerPropsType>(({className, ...props}, ref) => (
+  <div className={classNames(styles.FilePicker_Root, props.disabled && styles.FilePicker_Disabled, className)}>
     <label className={styles.FilePicker_Picker}>
 
       <div className={styles.FilePicker_UploadIcon}>
