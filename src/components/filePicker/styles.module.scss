@@ -1,0 +1,55 @@
+.FilePicker_Root {
+  &.FilePicker_Disabled {
+    .FilePicker_Picker {
+      @apply cursor-not-allowed	;
+    }
+
+    .FilePicker_UploadIcon {
+      @apply stroke-gray-300;
+    }
+
+    .FilePicker_HelpNote {
+      @apply text-gray-300;
+
+      span {
+        @apply text-gray-300;
+      }
+    }
+  }
+}
+
+.FilePicker_Picker {
+  @apply h-full;
+  @apply flex;
+  @apply flex-col;
+  @apply gap-3;
+  @apply items-center;
+  @apply justify-center;
+  @apply p-6;
+  @apply rounded-md;
+  @apply border;
+  @apply border-solid;
+  @apply border-gray-200;
+  @apply cursor-pointer;
+}
+
+.FilePicker_UploadIcon {
+  @apply inline-block;
+  @apply p-1;
+  @apply rounded-full;
+  @apply bg-gray-100;
+  @apply border;
+  @apply border-[.375rem];
+  @apply border-solid;
+  @apply border-gray-50;
+  @apply stroke-gray-600;
+}
+
+.FilePicker_HelpNote {
+  @apply text-md;
+  @apply text-gray-600;
+
+  span {
+    @apply text-primary-700;
+  }
+}

@@ -1,0 +1,13 @@
+.Card_Root {
+  @apply w-full;
+  @apply rounded-lg;
+  @apply bg-white;
+  @apply shadow-md;
+  @apply overflow-hidden;
+
+  &.Card_FillHeight {
+    @apply grow;
+    @apply flex;
+    @apply flex-col;
+  }
+}

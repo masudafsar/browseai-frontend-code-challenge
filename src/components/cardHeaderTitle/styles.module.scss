@@ -1,0 +1,15 @@
+.CardHeaderTitle_Root {
+  @apply grow;
+}
+
+.CardHeaderTitle_Title {
+  @apply text-lg;
+  @apply font-semibold;
+  @apply text-gray-900;
+}
+
+.CardHeaderTitle_SupportingText {
+  @apply text-md;
+  @apply font-normal;
+  @apply text-gray-600
+}
